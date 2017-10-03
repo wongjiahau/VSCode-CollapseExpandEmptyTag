@@ -13,21 +13,6 @@ import * as tagCollapser from '../tagCollapser';
 
 // Defines a Mocha test suite to group tests of similar kind together
 suite("TagCollapser Tests", () => {
-    test("GetOpenTagValue 1", () => {
-        var input = "<Open></Close>";
-        assert.equal(tagCollapser.GetOpenTagValue(input), "Open");
-    });
-
-    test("GetOpenTagValue 2", () => {
-        var input = "<Open height='5' weight='yo'></Close>";
-        assert.equal(tagCollapser.GetOpenTagValue(input), "Open height='5' weight='yo'");
-    });
-
-    test("GetCloseTagValue", () => {
-        var input = "<Open></Close>";
-        assert.equal(tagCollapser.GetCloseTagValue(input), "Close");
-    });
-
     test("CollapseTag 1", () => {
         var input = "<Open></Open>";
         assert.equal(tagCollapser.CollapseTag(input), "<Open/>");
