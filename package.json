@@ -1,7 +1,7 @@
 {
     "name": "collapsed-expand-empty-tag",
-    "displayName": "Collapsed/Expand-Empty-Tag",
-    "description": "Collapsed or expand empty XML/HTML tag.",
+    "displayName": "Collapse/Expand-Empty-Tag",
+    "description": "Collapse or expand empty XML/HTML tag.",
     "version": "0.0.1",
     "publisher": "wongjiahau",
     "engines": {
@@ -11,13 +11,17 @@
         "Other"
     ],
     "activationEvents": [
-        "onCommand:extension.sayHello"
+        "onCommand:extension.collapseTag",
+        "onCommand:extension.expandTag"
     ],
     "main": "./out/extension",
     "contributes": {
         "commands": [{
-            "command": "extension.sayHello",
-            "title": "Hello World"
+            "command": "extension.collapseTag",
+            "title": "Collapse empty tag"
+        }, {
+            "command": "extension.expandTag",
+            "title": "Expand empty tag"
         }]
     },
     "scripts": {
