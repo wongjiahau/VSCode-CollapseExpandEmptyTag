@@ -41,7 +41,6 @@ export function activate(context: vscode.ExtensionContext) {
 export function ContainValidTag(str: string) {
     if (!Contains(str, "<")) return false;
     if (!Contains(str, ">")) return false;
-    if (Contains(GetOpenTagValue(str), " ")) return false;
 
 
 }
@@ -54,8 +53,25 @@ export function GetOpenTagValue(str: string) {
         if (element == '>') return result;
         result += element.toString();
     }
-
 }
+
+export function GetCloseTagValue(str: string) {
+    var result = "";
+    var leftAngularBracketCount = 0;
+    for (var i = 0; i < str.length; i++) {
+        if (str[i] == '<') {
+            leftAngularBracketCount++;
+            continue;
+        }
+        if (leftAngularBracketCount > 1) {
+            if (str[i] == "<" || str[i] == "/") continue;
+            if (str[i] == ">") return result;
+            result += str[i].toString();
+        }
+    }
+}
+
+
 
 export function Contains(main: string, toBeFind: string) {
     return main.indexOf(toBeFind) >= 0;

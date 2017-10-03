@@ -26,8 +26,14 @@ suite("Extension Tests", () => {
     });
 
     test("Test GetOpenTagValue", () => {
-        var input = "<Hello>";
-        assert.equal(myExtension.GetOpenTagValue(input), "Hello");
+        var input = "<Open></Close>";
+        assert.equal(myExtension.GetOpenTagValue(input), "Open");
     });
+
+    test("Test GetCloseTagValue", () => {
+        var input = "<Open></Close>";
+        assert.equal(myExtension.GetCloseTagValue(input), "Close");
+    });
+
 
 });
