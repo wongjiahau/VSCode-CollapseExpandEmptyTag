@@ -1,5 +1,9 @@
+import * as helper from './helper'
 
-export function IsValidTag(tag: string){
+export function IsValidTag(str: string){
+    if(helper.Contains(str, "<")) return false;
+    if(helper.Contains(str, ">")) return false;
+    if(helper.Contains(str, "/")) return false;
     
 
 }

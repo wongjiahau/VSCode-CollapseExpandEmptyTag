@@ -17,4 +17,19 @@ suite("Helper Tests", () => {
         var input = "qwerty&";
         assert.equal(helper.Contains(input, "&"), true);
     });
+
+    test("CountChar 1", () => {
+        var input = "qwerty&w";
+        assert.equal(helper.CountChar(input, "w"), 2);
+    });
+
+    test("CountChar 2", () => {
+        var input = "qwerty&w";
+        assert.equal(helper.CountChar(input, " "), 0);
+    });
+
+    test("CountChar 3", () => {
+        var input = "qwerty&w";
+        assert.equal(helper.CountChar(input, "&"), 1);
+    });
 });
