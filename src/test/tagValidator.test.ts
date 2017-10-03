@@ -33,6 +33,26 @@ suite("TagValidator Tests", () => {
         var input = "<hey>/yo>";
         assert.equal(tagValidator.IsValidTag(input), false);
     });
+        
+    test("IsValidTag 5", () => {
+        var input = "<hey></hey>";
+        assert.equal(tagValidator.IsValidTag(input), true);
+    });
+        
+    test("IsValidTag 6", () => {
+        var input = "<hey walao='a'></hey>";
+        assert.equal(tagValidator.IsValidTag(input), true);
+    });
+
+    test("IsValidTag 7", () => {
+        var input = "<hey>yo</hey>";
+        assert.equal(tagValidator.IsValidTag(input), true);
+    });
+
+    test("IsValidTag 8", () => {
+        var input = "<hey walao='a'>yo</hey>";
+        assert.equal(tagValidator.IsValidTag(input), true);
+    });
 
     test("IsEmptyTag 1", () => {
         var input = "<hey></hey>";
