@@ -2,9 +2,8 @@
 // The module 'vscode' contains the VS Code extensibility API Import the module
 // and reference it with the alias vscode in your code below
 import * as vscode from 'vscode';
-import {
-    Range
-} from 'vscode';
+import { Range } from 'vscode'; 
+import * as tagValidator from './tagValidator';
 
 // this method is called when your extension is activated your extension is
 // activated the very first time the command is executed
@@ -22,18 +21,20 @@ export function activate(context: vscode.ExtensionContext) {
         vscode.commands.registerCommand('extension.collapseTag', () => {
             var editor = vscode.window.activeTextEditor;
             if (!editor) return;
-            var currentLine = GetCurrentLine(editor);
             editor.edit(builder => {
                 editor.selections.forEach(selection => {
                     const range = new Range(selection.start, selection.end);
                     const tag = editor.document.getText(range) || '';
-                    const collapsedTag = CollapseTag(tag);
-                    builder.replace(selection, collapsedTag);
+                    if (!tagValidator.IsValidTag(tag))
+                        vscode.window.showErrorMessage("'" + tag + "'" + " is not a valid tag.");
+                    else if (!tagValidator.IsEmptyTag(tag))
+                        vscode.window.showErrorMessage("'" + tag + "'" + " is not an empty tag.");
+                    else {
+                        const collapsedTag = CollapseTag(tag);
+                        builder.replace(selection, collapsedTag);
+                    }
                 });
             });
-            if (ContainValidTag(currentLine.text)) {
-                CollapseTag(currentLine.text);
-            }
         });
 
     let command2 =
