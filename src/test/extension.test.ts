@@ -50,4 +50,9 @@ suite("Extension Tests", () => {
         assert.equal(myExtension.CollapseTag(input), "<Open height='foo' bar='yo'/>");
     });
 
+    test("Test CollapseTag 3", () => {
+        var input = "<Open height='foo' bar='yo'></Open>\n<Tag2></Tag2>";
+        assert.equal(myExtension.CollapseTag(input), "<Open height='foo' bar='yo'/>\n<Tag2/>");
+    });
+
 });

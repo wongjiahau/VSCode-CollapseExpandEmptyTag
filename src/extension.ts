@@ -39,8 +39,12 @@ export function activate(context: vscode.ExtensionContext) {
 }
 
 export function CollapseTag(str: string) {
-    var result = GetOpenTagValue(str);
-    return "<" + result + "/>";
+    var tags = str.split('\n');
+    var result = "";
+    tags.forEach(element => {
+        result += "<" + GetOpenTagValue(element) + "/>" + "\n";
+    });
+    return result.substring(0, result.length - 1);
 }
 
 export function ContainValidTag(str: string) {
