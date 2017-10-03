@@ -4,6 +4,7 @@
 import * as vscode from 'vscode';
 import { Range } from 'vscode'; 
 import * as tagValidator from './tagValidator';
+import * as tagCollapser from './tagCollapser';
 
 // this method is called when your extension is activated your extension is
 // activated the very first time the command is executed
@@ -30,7 +31,7 @@ export function activate(context: vscode.ExtensionContext) {
                     else if (!tagValidator.IsEmptyTag(tag))
                         vscode.window.showErrorMessage("'" + tag + "'" + " is not an empty tag.");
                     else {
-                        const collapsedTag = CollapseTag(tag);
+                        const collapsedTag = tagCollapser.CollapseTag(tag);
                         builder.replace(selection, collapsedTag);
                     }
                 });
@@ -48,14 +49,6 @@ export function activate(context: vscode.ExtensionContext) {
     context.subscriptions.push(command2);
 }
 
-export function CollapseTag(str: string) {
-    var tags = str.split('\n');
-    var result = "";
-    tags.forEach(element => {
-        result += "<" + GetOpenTagValue(element) + "/>" + "\n";
-    });
-    return result.substring(0, result.length - 1);
-}
 
 export function ContainValidTag(str: string) {
     if (!Contains(str, "<")) return false;
@@ -63,34 +56,6 @@ export function ContainValidTag(str: string) {
 
 
 }
-
-export function GetOpenTagValue(str: string) {
-    var result = "";
-    for (var i = 0; i < str.length; i++) {
-        var element = str[i];
-        if (element == '<') continue;
-        if (element == '>') return result;
-        result += element.toString();
-    }
-}
-
-export function GetCloseTagValue(str: string) {
-    var result = "";
-    var leftAngularBracketCount = 0;
-    for (var i = 0; i < str.length; i++) {
-        if (str[i] == '<') {
-            leftAngularBracketCount++;
-            continue;
-        }
-        if (leftAngularBracketCount > 1) {
-            if (str[i] == "<" || str[i] == "/") continue;
-            if (str[i] == ">") return result;
-            result += str[i].toString();
-        }
-    }
-}
-
-
 
 export function Contains(main: string, toBeFind: string) {
     return main.indexOf(toBeFind) >= 0;
