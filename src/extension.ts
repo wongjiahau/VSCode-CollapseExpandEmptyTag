@@ -49,18 +49,6 @@ export function activate(context: vscode.ExtensionContext) {
     context.subscriptions.push(command2);
 }
 
-
-export function ContainValidTag(str: string) {
-    if (!Contains(str, "<")) return false;
-    if (!Contains(str, ">")) return false;
-
-
-}
-
-export function Contains(main: string, toBeFind: string) {
-    return main.indexOf(toBeFind) >= 0;
-}
-
 export function GetCurrentLine(editor: vscode.TextEditor) {
     return editor.document.lineAt(GetCurrentCursorPosition(editor));
 }
