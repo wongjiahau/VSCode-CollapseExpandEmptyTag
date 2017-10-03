@@ -20,9 +20,8 @@ export function activate(context: vscode.ExtensionContext) {
             var editor = vscode.window.activeTextEditor;
             if (!editor) return;
             var selection = editor.selection;
-            const currentPosition = GetCurrentCursorPosition(editor);
-            var line = editor.document.lineAt(currentPosition.line);
-            vscode.window.showInformationMessage('Collapsing tag' + line.text);
+            var currentLine = GetCurrentLine(editor);
+            vscode.window.showInformationMessage('Collapsing tag' + currentLine.text);
         });
 
     let command2 =
@@ -34,6 +33,10 @@ export function activate(context: vscode.ExtensionContext) {
 
     context.subscriptions.push(command1);
     context.subscriptions.push(command2);
+}
+
+function GetCurrentLine(editor: vscode.TextEditor){
+    return editor.document.lineAt(GetCurrentCursorPosition(editor));
 }
 
 function GetCurrentCursorPosition(editor: vscode.TextEditor) {
