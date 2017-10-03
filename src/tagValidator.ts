@@ -9,5 +9,5 @@ export function IsValidTag(str: string){
 }
 
 export function IsEmptyTag(tag: string){
-
+    return tagExtractor.GetValueBetweenTag(tag) == "";
 }

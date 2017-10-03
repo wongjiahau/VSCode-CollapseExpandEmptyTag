@@ -34,4 +34,14 @@ suite("TagValidator Tests", () => {
         assert.equal(tagValidator.IsValidTag(input), false);
     });
 
+    test("IsEmptyTag 1", () => {
+        var input = "<hey></hey>";
+        assert.equal(tagValidator.IsEmptyTag(input), true);
+    });
+
+    test("IsEmptyTag 2", () => {
+        var input = "<hey>yo</hey>";
+        assert.equal(tagValidator.IsEmptyTag(input), false);
+    });
+
 });
