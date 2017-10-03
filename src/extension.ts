@@ -21,7 +21,7 @@ export function activate(context: vscode.ExtensionContext) {
             if (!editor) return;
             var currentLine = GetCurrentLine(editor);
             if (ContainValidTag(currentLine.text)) {
-
+                CollapseTag(currentLine.text);
             }
             vscode.window.showInformationMessage("Contain left angular bracket");
             vscode.window.showInformationMessage('Collapsing tag' + currentLine.text);
@@ -36,6 +36,11 @@ export function activate(context: vscode.ExtensionContext) {
 
     context.subscriptions.push(command1);
     context.subscriptions.push(command2);
+}
+
+export function CollapseTag(str: string) {
+    var result = GetOpenTagValue(str);
+    return "<" + result + "/>";
 }
 
 export function ContainValidTag(str: string) {

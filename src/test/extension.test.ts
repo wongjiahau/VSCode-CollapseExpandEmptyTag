@@ -25,9 +25,14 @@ suite("Extension Tests", () => {
         assert.equal(myExtension.Contains(input, "&"), true);
     });
 
-    test("Test GetOpenTagValue", () => {
+    test("Test GetOpenTagValue 1", () => {
         var input = "<Open></Close>";
         assert.equal(myExtension.GetOpenTagValue(input), "Open");
+    });
+
+    test("Test GetOpenTagValue 2", () => {
+        var input = "<Open height='5' weight='yo'></Close>";
+        assert.equal(myExtension.GetOpenTagValue(input), "Open height='5' weight='yo'");
     });
 
     test("Test GetCloseTagValue", () => {
@@ -35,5 +40,14 @@ suite("Extension Tests", () => {
         assert.equal(myExtension.GetCloseTagValue(input), "Close");
     });
 
+    test("Test CollapseTag 1", () => {
+        var input = "<Open></Open>";
+        assert.equal(myExtension.CollapseTag(input), "<Open/>");
+    });
+
+    test("Test CollapseTag 2", () => {
+        var input = "<Open height='foo' bar='yo'></Open>";
+        assert.equal(myExtension.CollapseTag(input), "<Open height='foo' bar='yo'/>");
+    });
 
 });
