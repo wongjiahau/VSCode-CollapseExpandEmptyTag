@@ -20,8 +20,9 @@ export function activate(context: vscode.ExtensionContext) {
             var editor = vscode.window.activeTextEditor;
             if (!editor) return;
             var selection = editor.selection;
-            var text = editor.document.getText(selection);
-            vscode.window.showInformationMessage('Collapsing tag');
+            const currentPosition = GetCurrentCursorPosition(editor);
+            var line = editor.document.lineAt(currentPosition.line);
+            vscode.window.showInformationMessage('Collapsing tag' + line.text);
         });
 
     let command2 =
@@ -33,6 +34,10 @@ export function activate(context: vscode.ExtensionContext) {
 
     context.subscriptions.push(command1);
     context.subscriptions.push(command2);
+}
+
+function GetCurrentCursorPosition(editor: vscode.TextEditor) {
+    return editor.selection.active;
 }
 
 // this method is called when your extension is deactivated
