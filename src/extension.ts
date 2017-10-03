@@ -43,15 +43,16 @@ export function ContainValidTag(str: string) {
     if (!Contains(str, ">")) return false;
     if (Contains(GetOpenTagValue(str), " ")) return false;
 
-    function GetOpenTagValue(str: string) {
-        var result = "";
-        for (var i = 0; i < str.length; i++) {
-            var element = str[i];
-            if (element == '<') continue;
-            result += element.toString();
-            if (element == '>') return result;
-        }
 
+}
+
+export function GetOpenTagValue(str: string) {
+    var result = "";
+    for (var i = 0; i < str.length; i++) {
+        var element = str[i];
+        if (element == '<') continue;
+        if (element == '>') return result;
+        result += element.toString();
     }
 
 }

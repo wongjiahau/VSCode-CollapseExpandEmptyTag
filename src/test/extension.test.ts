@@ -25,4 +25,9 @@ suite("Extension Tests", () => {
         assert.equal(myExtension.Contains(input, "&"), true);
     });
 
+    test("Test GetOpenTagValue", () => {
+        var input = "<Hello>";
+        assert.equal(myExtension.GetOpenTagValue(input), "Hello");
+    });
+
 });
