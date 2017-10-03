@@ -2,6 +2,9 @@
 // The module 'vscode' contains the VS Code extensibility API Import the module
 // and reference it with the alias vscode in your code below
 import * as vscode from 'vscode';
+import {
+    Range
+} from 'vscode';
 
 // this method is called when your extension is activated your extension is
 // activated the very first time the command is executed
@@ -20,11 +23,17 @@ export function activate(context: vscode.ExtensionContext) {
             var editor = vscode.window.activeTextEditor;
             if (!editor) return;
             var currentLine = GetCurrentLine(editor);
+            editor.edit(builder => {
+                editor.selections.forEach(selection => {
+                    const range = new Range(selection.start, selection.end);
+                    const tag = editor.document.getText(range) || '';
+                    const collapsedTag = CollapseTag(tag);
+                    builder.replace(selection, collapsedTag);
+                });
+            });
             if (ContainValidTag(currentLine.text)) {
                 CollapseTag(currentLine.text);
             }
-            vscode.window.showInformationMessage("Contain left angular bracket");
-            vscode.window.showInformationMessage('Collapsing tag' + currentLine.text);
         });
 
     let command2 =
