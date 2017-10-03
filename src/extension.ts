@@ -19,8 +19,11 @@ export function activate(context: vscode.ExtensionContext) {
         vscode.commands.registerCommand('extension.collapseTag', () => {
             var editor = vscode.window.activeTextEditor;
             if (!editor) return;
-            var selection = editor.selection;
             var currentLine = GetCurrentLine(editor);
+            if (ContainValidTag(currentLine.text)) {
+
+            }
+            vscode.window.showInformationMessage("Contain left angular bracket");
             vscode.window.showInformationMessage('Collapsing tag' + currentLine.text);
         });
 
@@ -35,11 +38,33 @@ export function activate(context: vscode.ExtensionContext) {
     context.subscriptions.push(command2);
 }
 
-function GetCurrentLine(editor: vscode.TextEditor){
+export function ContainValidTag(str: string) {
+    if (!Contains(str, "<")) return false;
+    if (!Contains(str, ">")) return false;
+    if (Contains(GetOpenTagValue(str), " ")) return false;
+
+    function GetOpenTagValue(str: string) {
+        var result = "";
+        for (var i = 0; i < str.length; i++) {
+            var element = str[i];
+            if (element == '<') continue;
+            result += element.toString();
+            if (element == '>') return result;
+        }
+
+    }
+
+}
+
+export function Contains(main: string, toBeFind: string) {
+    return main.indexOf(toBeFind) >= 0;
+}
+
+export function GetCurrentLine(editor: vscode.TextEditor) {
     return editor.document.lineAt(GetCurrentCursorPosition(editor));
 }
 
-function GetCurrentCursorPosition(editor: vscode.TextEditor) {
+export function GetCurrentCursorPosition(editor: vscode.TextEditor) {
     return editor.selection.active;
 }
 
