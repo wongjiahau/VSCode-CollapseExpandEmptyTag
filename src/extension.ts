@@ -5,7 +5,7 @@ import * as vscode from 'vscode';
 
 // this method is called when your extension is activated your extension is
 // activated the very first time the command is executed
-export function activate(context : vscode.ExtensionContext) {
+export function activate(context: vscode.ExtensionContext) {
 
     // Use the console to output diagnostic information (console.log) and errors
     // (console.error) This line of code will only be executed once when your
@@ -15,32 +15,24 @@ export function activate(context : vscode.ExtensionContext) {
     // The command has been defined in the package.json file Now provide the
     // implementation of the command with  registerCommand The commandId parameter
     // must match the command field in package.json
-    let command1 = vscode
-        .commands
-        .registerCommand('extension.collapseTag', () => {
-            // The code you place here will be executed every time your command is executed
-            // Display a message box to the user
-            vscode
-                .window
-                .showInformationMessage('Collapsing tag');
+    let command1 =
+        vscode.commands.registerCommand('extension.collapseTag', () => {
+            var editor = vscode.window.activeTextEditor;
+            if (!editor) return;
+            var selection = editor.selection;
+            var text = editor.document.getText(selection);
+            vscode.window.showInformationMessage('Collapsing tag');
         });
 
-    let command2 = vscode
-        .commands
-        .registerCommand('extension.expandTag', () => {
+    let command2 =
+        vscode.commands.registerCommand('extension.expandTag', () => {
             // The code you place here will be executed every time your command is executed
             // Display a message box to the user
-            vscode
-                .window
-                .showInformationMessage('Expanding tag');
+            vscode.window.showInformationMessage('Expanding tag');
         });
 
-    context
-        .subscriptions
-        .push(command1);
-    context
-        .subscriptions
-        .push(command2);
+    context.subscriptions.push(command1);
+    context.subscriptions.push(command2);
 }
 
 // this method is called when your extension is deactivated
