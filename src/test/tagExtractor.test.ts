@@ -28,4 +28,14 @@ suite("TagExtractor Tests", () => {
         assert.equal(tagCollapser.GetCloseTagValue(input), "Close");
     });
 
+    test("GetValueBetweenTag 1", () => {
+        var input = "<tag>hey</tag>";
+        assert.equal(tagCollapser.GetValueBetweenTag(input), "hey");
+    });
+
+    test("GetValueBetweenTag 2", () => {
+        var input = "<tag></tag>";
+        assert.equal(tagCollapser.GetValueBetweenTag(input), "");
+    });
+
 });
