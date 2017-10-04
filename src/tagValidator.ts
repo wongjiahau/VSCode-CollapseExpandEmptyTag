@@ -8,7 +8,7 @@ import * as tagExtractor from './tagExtractor'
  * @returns {string} Return an error if input is an invalid tag, else return null
  */
 export function IsInvalidExpandedTag(input: string): string {
-    if (!IsValidTag(input))
+    if (!IsValidExpandedTag(input))
         return "'" + input + "'" + " is not a valid tag.";
     else if (!IsEmptyTag(input))
         return "'" + input + "'" + " is not an empty tag.";
@@ -20,7 +20,7 @@ export function IsInvalidExpandedTag(input: string): string {
  * @param {string} str String to be validated
  * @returns {boolean} Returns true if the string is a valid tag, else false
  */
-export function IsValidTag(str: string): boolean {
+export function IsValidExpandedTag(str: string): boolean {
     if (helper.CountChar(str, "<") < 2) return false;
     if (helper.CountChar(str, ">") < 2) return false;
     if (helper.CountChar(str, "/") < 1) return false;

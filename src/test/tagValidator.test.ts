@@ -31,47 +31,47 @@ suite("TagValidator Tests", () => {
 
     test("IsValidTag 1", () => {
         var input = "helo";
-        assert.equal(tagValidator.IsValidTag(input), false);
+        assert.equal(tagValidator.IsValidExpandedTag(input), false);
     });
 
     test("IsValidTag 2", () => {
         var input = "<hey></yo>";
-        assert.equal(tagValidator.IsValidTag(input), false);
+        assert.equal(tagValidator.IsValidExpandedTag(input), false);
     });
 
     test("IsValidTag 3", () => {
         var input = "<hey</yo>";
-        assert.equal(tagValidator.IsValidTag(input), false);
+        assert.equal(tagValidator.IsValidExpandedTag(input), false);
     });
 
     test("IsValidTag 4", () => {
         var input = "<hey>/yo>";
-        assert.equal(tagValidator.IsValidTag(input), false);
+        assert.equal(tagValidator.IsValidExpandedTag(input), false);
     });
 
     test("IsValidTag 5", () => {
         var input = "<hey></hey>";
-        assert.equal(tagValidator.IsValidTag(input), true);
+        assert.equal(tagValidator.IsValidExpandedTag(input), true);
     });
 
     test("IsValidTag 6", () => {
         var input = "<hey walao='a'></hey>";
-        assert.equal(tagValidator.IsValidTag(input), true);
+        assert.equal(tagValidator.IsValidExpandedTag(input), true);
     });
 
     test("IsValidTag 7", () => {
         var input = "<hey>yo</hey>";
-        assert.equal(tagValidator.IsValidTag(input), true);
+        assert.equal(tagValidator.IsValidExpandedTag(input), true);
     });
 
     test("IsValidTag 8", () => {
         var input = "<hey walao='a'>yo</hey>";
-        assert.equal(tagValidator.IsValidTag(input), true);
+        assert.equal(tagValidator.IsValidExpandedTag(input), true);
     });
 
     test("IsValidTag 8", () => {
         var input = "<yo/>";
-        assert.equal(tagValidator.IsValidTag(input), false);
+        assert.equal(tagValidator.IsValidExpandedTag(input), false);
     });
 
     test("IsEmptyTag 1", () => {

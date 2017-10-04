@@ -15,6 +15,6 @@ import * as tagValidator from '../tagValidator';
 suite("Extension Tests", () => {
     test("IsValidTag 1", () => {
         var input = "helo";
-        assert.equal(tagValidator.IsValidTag(input), false);
+        assert.equal(tagValidator.IsValidExpandedTag(input), false);
     });
 });
