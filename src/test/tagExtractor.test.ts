@@ -96,8 +96,8 @@ suite("TagExtractor Tests", () => {
     });
 
     test("GetCollapsedTagValueWithAttribute 3", () => {
-        var input = `<example src="./aer/"/>`;
-        assert.equal(tagExtractor.GetCollapsedTagValueWithAttribute(input), `example src="./aer/"/"`);
+        var input = `<example src="./file/test.ts"/>`;
+        assert.equal(tagExtractor.GetCollapsedTagValueWithAttribute(input), `example src="./file/test.ts"`);
     });
 
     test("GetCollapsedTagValueWithoutAttribute 1", () => {

@@ -53,7 +53,7 @@ export function GetCollapsedTagValueWithAttribute(input: string): string {
     for (var i = 0; i < input.length; i++) {
         var c = input[i];
         if (c == '<') continue;
-        if (c == '/') return result;
+        if (c == '/' && input[i + 1] == '>') return result;
         result += c.toString();
     }
 }

@@ -37,8 +37,8 @@ suite("TagExpander Tests", () => {
     });
     
     test("ExpandTag 4", () => {
-        var input = `<example src="./aer/"/>` ;
-        assert.equal(tagExpander.ExpandTag(input), `<example src="./aer/"/></example>`);
+        var input = `<example src="./file/test.ts" />` ;
+        assert.equal(tagExpander.ExpandTag(input), `<example src="./file/test.ts" ></example>`);
     });
     
 
