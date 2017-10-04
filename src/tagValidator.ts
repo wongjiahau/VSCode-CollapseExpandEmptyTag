@@ -12,11 +12,11 @@ import * as tagExtractor from './tagExtractor'
  */
 export function IsInvalidExpandedTag(input: string): string {
     if (IsValidCollapsedTag(input))
-        return "'" + input + "'" + " is already collapsed.";
+        return "This tag is already collapsed.";
     if (!IsValidExpandedTag(input))
-        return "'" + input + "'" + " is not a valid tag.";
+        return "This tag is invalid.";
     if (!IsEmptyExpandedTag(input))
-        return "'" + input + "'" + " is not an empty tag.";
+        return "Cannot collapse a non-empty tag.";
     return null;
 }
 

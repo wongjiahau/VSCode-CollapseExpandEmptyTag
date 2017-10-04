@@ -16,12 +16,12 @@ suite("TagValidator Tests", () => {
 
     test("IsInvalidExpandedTag 1", () => {
         var input = "<tagfglala></tag>";
-        assert.equal(tagValidator.IsInvalidExpandedTag(input), "'<tagfglala></tag>' is not a valid tag.");
+        assert.equal(tagValidator.IsInvalidExpandedTag(input), "This tag is invalid.");
     });
 
     test("IsInvalidExpandedTag 2", () => {
         var input = "<lol>haha</lol>";
-        assert.equal(tagValidator.IsInvalidExpandedTag(input), "'<lol>haha</lol>' is not an empty tag.");
+        assert.equal(tagValidator.IsInvalidExpandedTag(input), "Cannot collapse a non-empty tag.");
     });
 
     test("IsInvalidExpandedTag 3", () => {
@@ -29,9 +29,16 @@ suite("TagValidator Tests", () => {
         assert.equal(tagValidator.IsInvalidExpandedTag(input), null);
     });
 
-    test("IsInvalidExpandedTag 3", () => {
+    test("IsInvalidExpandedTag 4", () => {
         var input = "<lol/>";
-        assert.equal(tagValidator.IsInvalidExpandedTag(input), "'<lol/>' is already collapsed.");
+        assert.equal(tagValidator.IsInvalidExpandedTag(input), "This tag is already collapsed.");
+    });
+
+    test("IsInvalidExpandedTag 4", () => {
+        var input =  `<tag hey='yo' src='/myFile/myTest.ts'> 
+                        hello 
+                      </tag>` ;
+        assert.equal(tagValidator.IsInvalidExpandedTag(input), "Cannot collapse a non-empty tag.");
     });
 
     test("IsValidExpandedTag 1", () => {
