@@ -112,6 +112,11 @@ suite("TagExtractor Tests", () => {
         assert.equal(tagExtractor.GetCollapsedTagValueWithAttribute(input), `example src="./file/test.ts"`);
     });
 
+    test("GetCollapsedTagValueWithAttribute 4", () => {
+        var input = "<Button onClick={()=>{ /*some action*/}} />";
+        assert.equal(tagExtractor.GetCollapsedTagValueWithAttribute(input), `example src="./file/test.ts"`);
+    });
+
     test("GetCollapsedTagValueWithoutAttribute 1", () => {
         var input = "<tag/>";
         assert.equal(tagExtractor.GetCollapsedTagValueWithoutAttribute(input), "tag");
