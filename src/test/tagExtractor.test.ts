@@ -113,8 +113,13 @@ suite("TagExtractor Tests", () => {
     });
 
     test("GetCollapsedTagValueWithAttribute 4", () => {
-        var input = "<Button onClick={()=>{ /*some action*/}} />";
-        assert.equal(tagExtractor.GetCollapsedTagValueWithAttribute(input), `example src="./file/test.ts"`);
+        var input = "<Button onClick={()=>{ /*some action*/}}/>";
+        assert.equal(tagExtractor.GetCollapsedTagValueWithAttribute(input), `Button onClick={()=>{ /*some action*/}}`);
+    });
+
+    test("GetCollapsedTagValueWithAttribute 5", () => {
+        var input = "<div {...[<div/>]} />";
+        assert.equal(tagExtractor.GetCollapsedTagValueWithAttribute(input), `{...[<div/>]}`);
     });
 
     test("GetCollapsedTagValueWithoutAttribute 1", () => {
