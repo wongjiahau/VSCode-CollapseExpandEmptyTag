@@ -5,7 +5,9 @@ import * as vscode from 'vscode';
 import {
     Range
 } from 'vscode';
-import {IsInvalidTag} from './tagValidator';
+import {
+    IsInvalidTag
+} from './tagValidator';
 import * as tagCollapser from './tagCollapser';
 
 // this method is called when your extension is activated your extension is
@@ -24,14 +26,25 @@ export function activate(context: vscode.ExtensionContext) {
         vscode.commands.registerCommand('extension.collapseTag', () => {
             var editor = vscode.window.activeTextEditor;
             if (!editor) return;
+            let { document, selections } = editor;
+            editor.selections = selections.map(s => {
+                // active.line is zero based while document.lineCount aren't
+                // therefore s.active.line is increased by one here
+                let currentLine = s.active.line + 1;
+                let selectionFirst = new vscode.Position(s.start.line, 0);
+
+                // default expand selection to current line
+                let selectionCurrentLine = new vscode.Position(s.active.line, document.lineAt(s.active.line).range.end.character);
+                return new vscode.Selection(selectionFirst, selectionCurrentLine);
+            });
             editor.edit(builder => {
                 editor.selections.forEach(selection => {
                     const range = new Range(selection.start, selection.end);
                     const text = editor.document.getText(range) || '';
                     var error = IsInvalidTag(text);
-                    if (error != null) 
+                    if (error != null)
                         vscode.window.showErrorMessage(error);
-                     else {
+                    else {
                         const collapsedTag = tagCollapser.CollapseTag(text);
                         builder.replace(selection, collapsedTag);
                     }
