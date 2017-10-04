@@ -45,11 +45,17 @@ export function GetCloseTagValue(input: string) {
 
 /**
  * @export
- * @param {string} input Input should be an collapsed tag, e.g. <example/>
+ * @param {string} input Input should be an collapsed tag, e.g. <example hey='yo'/>
  * @returns {string} Returns the value inside the tag INLCUDING attributes
  */
 export function GetCollapsedTagValueWithAttribute(input: string): string {
-    throw new Error("Not implemented yet");
+    var result = "";
+    for (var i = 0; i < input.length; i++) {
+        var c = input[i];
+        if (c == '<') continue;
+        if (c == '/') return result;
+        result += c.toString();
+    }
 }
 
 /**
@@ -58,7 +64,9 @@ export function GetCollapsedTagValueWithAttribute(input: string): string {
  * @returns {string} Returns the value inside the tag EXCLUDING attributes
  */
 export function GetCollapsedTagValueWithoutAttribute(input: string): string {
-    throw new Error("Not implemented yet");
+    var result = GetCollapsedTagValueWithAttribute(input);
+    if(Contains(result, ' ')) return result.substring(0, result.indexOf(' '));
+    return result;
 }
 
 export function GetValueBetweenTag(str: string) {
