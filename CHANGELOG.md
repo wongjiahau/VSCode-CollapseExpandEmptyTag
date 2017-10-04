@@ -5,3 +5,14 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 
 ## [Unreleased]
 - Initial release
+
+## [0.0.1]
+### Added 
+- Expand tag feature
+- Collapse tag feature
+
+## [0.0.2]
+### Fixed
+- Swarming whitespace within tag when expanding tag (sometimes)
+### Added
+- Changelog
