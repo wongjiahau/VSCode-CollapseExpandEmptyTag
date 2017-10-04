@@ -2,10 +2,22 @@
 // The module 'vscode' contains the VS Code extensibility API Import the module
 // and reference it with the alias vscode in your code below
 import * as vscode from 'vscode';
-import { Range } from 'vscode';
-import { IsInvalidExpandedTag, IsInvalidCollapsedTag } from './tagValidator';
-import { CollapseTag } from './tagCollapser';
-import { ExpandTag } from './tagExpander'
+import {
+    Range
+} from 'vscode';
+import {
+    IsInvalidExpandedTag,
+    IsInvalidCollapsedTag
+} from './tagValidator';
+import {
+    CollapseTag
+} from './tagCollapser';
+import {
+    ExpandTag
+} from './tagExpander'
+import {
+    TagMatcher
+} from './importedFiles/tagMatcher';
 
 // this method is called when your extension is activated your extension is
 // activated the very first time the command is executed
@@ -23,7 +35,7 @@ export function activate(context: vscode.ExtensionContext) {
         vscode.commands.registerCommand('extension.collapseTag', () => {
             var editor = vscode.window.activeTextEditor;
             if (!editor) return;
-            SelectCurrentLine(editor);
+            SelectTag(editor);
             editor.edit(builder => {
                 editor.selections.forEach(selection => {
                     const range = new Range(selection.start, selection.end);
@@ -77,13 +89,33 @@ export function activate(context: vscode.ExtensionContext) {
             return new vscode.Selection(selectionFirst, selectionCurrentLine);
         });
     }
+
+    function SelectTag(editor: vscode.TextEditor) {
+        const editorText = editor.document.getText();
+        const offset = editor.document.offsetAt(GetCurrentCursorPosition(editor));
+        const tagMatcher = new TagMatcher(editorText, offset);
+        const startPosition = getPositionAt(editor, tagMatcher.findOpening(true));
+        const endPosition = getPositionAt(editor, tagMatcher.findClosing(true));
+         let {
+            document,
+            selections
+        } = editor;
+        editor.selections = selections.map(s => {
+            return new vscode.Selection(startPosition, endPosition);
+        });
+    }
 }
 
-export function GetCurrentLine(editor: vscode.TextEditor) {
+function getPositionAt(editor: vscode.TextEditor, offset: number): vscode.Position {
+    const pos = editor.document.positionAt(offset);
+    return new vscode.Position(pos.line, pos.character);
+}
+
+function GetCurrentLine(editor: vscode.TextEditor) {
     return editor.document.lineAt(GetCurrentCursorPosition(editor));
 }
 
-export function GetCurrentCursorPosition(editor: vscode.TextEditor) {
+function GetCurrentCursorPosition(editor: vscode.TextEditor) {
     return editor.selection.active;
 }
 

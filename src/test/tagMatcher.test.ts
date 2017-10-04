@@ -27,6 +27,18 @@ suite("TagMatcher Tests", () => {
         assert.equal(tagMatcher.findOpening(false), 7);
     });
 
+    test("findOpening 3", () => {
+        var input = "<hey><hello></hello></hey>";
+        var tagMatcher = new TagMatcher(input, 0);
+        assert.equal(tagMatcher.findOpening(true), 0);
+    });
+
+    test("findOpening 4", () => {
+        var input = "<hey><hello></hello></hey>";
+        var tagMatcher = new TagMatcher(input, 5);
+        assert.equal(tagMatcher.findOpening(true), 5);
+    });
+
     test("findClosing 1", () => {
         var input = "<hello>123</hello>";
         var tagMatcher = new TagMatcher(input, 0);
