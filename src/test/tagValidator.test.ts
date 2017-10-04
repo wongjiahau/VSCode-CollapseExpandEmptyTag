@@ -134,8 +134,13 @@ suite("TagValidator Tests", () => {
         assert.equal(tagValidator.IsValidCollapsedTag(input), true);
     });
 
-    test("IsValidCollapsedTag 4", () => {
+    test("IsValidCollapsedTag 5", () => {
         var input = "<lol src='../extension.ts'/>";
+        assert.equal(tagValidator.IsValidCollapsedTag(input), true);
+    });
+
+    test("IsValidCollapsedTag 6", () => {
+        var input = "<Button onClick={()=>{ /*some action*/}} />";
         assert.equal(tagValidator.IsValidCollapsedTag(input), true);
     });
 
