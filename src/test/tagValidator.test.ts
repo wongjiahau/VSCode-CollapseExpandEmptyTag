@@ -29,49 +29,84 @@ suite("TagValidator Tests", () => {
         assert.equal(tagValidator.IsInvalidExpandedTag(input), null);
     });
 
-    test("IsValidTag 1", () => {
+    test("IsValidExpandedTag 1", () => {
         var input = "helo";
         assert.equal(tagValidator.IsValidExpandedTag(input), false);
     });
 
-    test("IsValidTag 2", () => {
+    test("IsValidExpandedTag 2", () => {
         var input = "<hey></yo>";
         assert.equal(tagValidator.IsValidExpandedTag(input), false);
     });
 
-    test("IsValidTag 3", () => {
+    test("IsValidExpandedTag 3", () => {
         var input = "<hey</yo>";
         assert.equal(tagValidator.IsValidExpandedTag(input), false);
     });
 
-    test("IsValidTag 4", () => {
+    test("IsValidExpandedTag 4", () => {
         var input = "<hey>/yo>";
         assert.equal(tagValidator.IsValidExpandedTag(input), false);
     });
 
-    test("IsValidTag 5", () => {
+    test("IsValidExpandedTag 5", () => {
         var input = "<hey></hey>";
         assert.equal(tagValidator.IsValidExpandedTag(input), true);
     });
 
-    test("IsValidTag 6", () => {
+    test("IsValidExpandedTag 6", () => {
         var input = "<hey walao='a'></hey>";
         assert.equal(tagValidator.IsValidExpandedTag(input), true);
     });
 
-    test("IsValidTag 7", () => {
+    test("IsValidExpandedTag 7", () => {
         var input = "<hey>yo</hey>";
         assert.equal(tagValidator.IsValidExpandedTag(input), true);
     });
 
-    test("IsValidTag 8", () => {
+    test("IsValidExpandedTag 8", () => {
         var input = "<hey walao='a'>yo</hey>";
         assert.equal(tagValidator.IsValidExpandedTag(input), true);
     });
 
-    test("IsValidTag 8", () => {
+    test("IsValidExpandedTag 9", () => {
         var input = "<yo/>";
         assert.equal(tagValidator.IsValidExpandedTag(input), false);
+    });
+
+    test("IsInvalidCollapsedTag 1", () => {
+        var input = "<lol></lol>";
+        assert.equal(tagValidator.IsInvalidExpandedTag(input), null);
+    });
+
+    test("IsInvalidCollapsedTag 2", () => {
+        var input = "<lol/>";
+        assert.equal(tagValidator.IsInvalidExpandedTag(input), "'<lol/>' is already collapsed.");
+    });
+    
+    test("IsInvalidCollapsedTag 3", () => {
+        var input = "<lol</lol>";
+        assert.equal(tagValidator.IsInvalidExpandedTag(input), "'<lol</lol>' is not a valid tag.");
+    });
+    
+    test("IsValidCollapsedTag 1", () => {
+        var input = "<lol</lol>";
+        assert.equal(tagValidator.IsValidCollapsedTag(input), false);
+    });
+
+    test("IsValidCollapsedTag 2", () => {
+        var input = "<lol></lol>";
+        assert.equal(tagValidator.IsValidCollapsedTag(input), false);
+    });
+
+    test("IsValidCollapsedTag 3", () => {
+        var input = "<lol/>";
+        assert.equal(tagValidator.IsValidCollapsedTag(input), true);
+    });
+
+    test("IsValidCollapsedTag 4", () => {
+        var input = "<lol hey='yo'/>";
+        assert.equal(tagValidator.IsValidCollapsedTag(input), true);
     });
 
     test("IsEmptyTag 1", () => {

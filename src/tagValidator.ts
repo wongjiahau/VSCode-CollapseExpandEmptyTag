@@ -15,6 +15,7 @@ export function IsInvalidExpandedTag(input: string): string {
     return null;
 }
 
+
 /**
  * @export
  * @param {string} input String to be validated
@@ -30,4 +31,18 @@ export function IsValidExpandedTag(input: string): boolean {
 
 export function IsEmptyExpandedTag(tag: string): boolean {
     return tagExtractor.GetValueBetweenTag(tag) == "";
+}
+
+/**
+ * Check if the input is an invalid collapsed HTML/XML tag
+ * @export
+ * @param {string} input 
+ * @returns {string} Return an error message if input is not a valid collapsed tag, else return null
+ */
+export function IsInvalidCollapsedTag(input: string): string {
+
+}
+
+export function IsValidCollapsedTag(input: string): boolean {
+
 }
