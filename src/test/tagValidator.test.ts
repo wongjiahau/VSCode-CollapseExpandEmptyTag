@@ -76,12 +76,12 @@ suite("TagValidator Tests", () => {
 
     test("IsEmptyTag 1", () => {
         var input = "<hey></hey>";
-        assert.equal(tagValidator.IsEmptyTag(input), true);
+        assert.equal(tagValidator.IsEmptyExpandedTag(input), true);
     });
 
     test("IsEmptyTag 2", () => {
         var input = "<hey>yo</hey>";
-        assert.equal(tagValidator.IsEmptyTag(input), false);
+        assert.equal(tagValidator.IsEmptyExpandedTag(input), false);
     });
 
 });
