@@ -7,7 +7,7 @@ import * as tagExtractor from './tagExtractor'
  * @param {string} input Check if the input is an invalid tag 
  * @returns {string} Return an error if input is an invalid tag, else return null
  */
-export function IsInvalidTag(input: string): string {
+export function IsInvalidExpandedTag(input: string): string {
     if (!IsValidTag(input))
         return "'" + input + "'" + " is not a valid tag.";
     else if (!IsEmptyTag(input))
