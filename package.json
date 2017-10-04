@@ -2,12 +2,32 @@
     "name": "collapsed-expand-empty-tag",
     "displayName": "Collapse/Expand-Empty-Tag",
     "description": "Collapse or expand empty XML/HTML tag.",
-    "version": "0.0.1",
+    "version": "0.0.2",
     "publisher": "wongjiahau",
+    "galleryBanner": {
+        "theme": "dark"
+    },
+    "keywords": [
+        "xml",
+        "html",
+        "collapse",
+        "expand",
+        "tag"
+    ],
+    "repository": {
+        "url": "https://github.com/wongjiahau/VSCode-CollapseExpandEmptyTag"
+    },
     "engines": {
         "vscode": "^1.16.0"
     },
+    "homepage": "https://github.com/wongjiahau/VSCode-CollapseExpandEmptyTag",
+    "author": {
+        "name": "wongjiahau",
+        "email": "hou32hou@gmail.com"
+    },
     "categories": [
+        "Formatters",
+        "Extension Packs",
         "Other"
     ],
     "activationEvents": [
