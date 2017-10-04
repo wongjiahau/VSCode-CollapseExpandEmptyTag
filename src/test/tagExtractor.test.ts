@@ -13,14 +13,45 @@ import * as tagCollapser from '../tagExtractor';
 
 // Defines a Mocha test suite to group tests of similar kind together
 suite("TagExtractor Tests", () => {
-    test("GetOpenTagValue 1", () => {
+
+    test("GetOpenTagValueWithoutAttribute 1", () => {
         var input = "<Open></Close>";
-        assert.equal(tagCollapser.GetOpenTagValue(input), "Open");
+        assert.equal(tagCollapser.GetOpenTagValueWithoutAttribute(input), "Open");
     });
 
-    test("GetOpenTagValue 2", () => {
+    test("GetOpenTagValueWithoutAttribute 2", () => {
         var input = "<Open height='5' weight='yo'></Close>";
-        assert.equal(tagCollapser.GetOpenTagValue(input), "Open height='5' weight='yo'");
+        assert.equal(tagCollapser.GetOpenTagValueWithoutAttribute(input), "Open");
+    });
+
+    test("GetOpenTagValueWithoutAttribute 3", () => {
+        var input = " <Open></Close>";
+        assert.equal(tagCollapser.GetOpenTagValueWithoutAttribute(input), "Open");
+    });
+
+    test("GetOpenTagValueWithoutAttribute 4", () => {
+        var input = " <Open height='5' weight='yo'></Close>";
+        assert.equal(tagCollapser.GetOpenTagValueWithoutAttribute(input), "Open");
+    });
+
+    test("GetOpenTagValueWithAttribute 1", () => {
+        var input = "<Open></Close>";
+        assert.equal(tagCollapser.GetOpenTagValueWithAttribute(input), "Open");
+    });
+
+    test("GetOpenTagValueWithAttribute 2", () => {
+        var input = "<Open height='5' weight='yo'></Close>";
+        assert.equal(tagCollapser.GetOpenTagValueWithAttribute(input), "Open height='5' weight='yo'");
+    });
+
+    test("GetOpenTagValueWithAttribute 3", () => {
+        var input = " <Open></Close>";
+        assert.equal(tagCollapser.GetOpenTagValueWithAttribute(input), "Open");
+    });
+
+    test("GetOpenTagValueWithAttribute 2", () => {
+        var input = " <Open height='5' weight='yo'></Close>";
+        assert.equal(tagCollapser.GetOpenTagValueWithAttribute(input), "Open height='5' weight='yo'");
     });
 
     test("GetCloseTagValue", () => {

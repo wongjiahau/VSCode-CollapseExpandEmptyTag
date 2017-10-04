@@ -1,10 +1,24 @@
-export function GetOpenTagValue(str: string) {
+import {
+    Contains
+} from './helper'
+
+export function GetOpenTagValueWithoutAttribute(str: string) {
+    var result = GetOpenTagValueWithAttribute(str);
+    if (Contains(result, ' ')) return result.substring(0, result.indexOf(' '));
+    return result;
+}
+
+export function GetOpenTagValueWithAttribute(str: string) {
     var result = "";
+    var leftAngularBrackIsFound = false;
     for (var i = 0; i < str.length; i++) {
         var element = str[i];
-        if (element == '<') continue;
+        if (element == '<') {
+            leftAngularBrackIsFound = true;
+            continue;
+        }
         if (element == '>') return result;
-        result += element.toString();
+        if (leftAngularBrackIsFound) result += element.toString();
     }
 }
 
