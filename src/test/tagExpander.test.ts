@@ -19,9 +19,21 @@ suite("TagExpander Tests", () => {
         assert.equal(tagExpander.ExpandTag(input), "<hello></hello>");
     });
     
-    test("ExpandTag 1", () => {
+    test("ExpandTag 2", () => {
         var input = "<hello height='yo' weight='lala'/>";
         assert.equal(tagExpander.ExpandTag(input), "<hello height='yo' weight='lala'></hello>");
+    });
+    
+    test("ExpandTag 2", () => {
+        var input = `<hello
+                        hey='yo'
+                        walao='a'
+                        />`;
+        assert.equal(tagExpander.ExpandTag(input), 
+                    `<hello
+                        hey='yo'
+                        walao='a'
+                        ></hello>`);
     });
 
 });
