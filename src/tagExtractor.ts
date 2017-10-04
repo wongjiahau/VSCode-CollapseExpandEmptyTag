@@ -22,20 +22,43 @@ export function GetOpenTagValueWithAttribute(str: string) {
     }
 }
 
-export function GetCloseTagValue(str: string) {
+/**
+ * @export
+ * @param {string} input Input should be an expanded tag, e.g. <example></example>
+ * @returns Returns the value of closing tag
+ */
+export function GetCloseTagValue(input: string) {
     var result = "";
     var leftAngularBracketCount = 0;
-    for (var i = 0; i < str.length; i++) {
-        if (str[i] == '<') {
+    for (var i = 0; i < input.length; i++) {
+        if (input[i] == '<') {
             leftAngularBracketCount++;
             continue;
         }
         if (leftAngularBracketCount > 1) {
-            if (str[i] == "<" || str[i] == "/") continue;
-            if (str[i] == ">") return result;
-            result += str[i].toString();
+            if (input[i] == "<" || input[i] == "/") continue;
+            if (input[i] == ">") return result;
+            result += input[i].toString();
         }
     }
+}
+
+/**
+ * @export
+ * @param {string} input Input should be an collapsed tag, e.g. <example/>
+ * @returns {string} Returns the value inside the tag INLCUDING attributes
+ */
+export function GetCollapsedTagValueWithAttribute(input: string): string {
+    throw new Error("Not implemented yet");
+}
+
+/**
+ * @export
+ * @param {string} input Input should be an collapsed tag, e.g. <example/>
+ * @returns {string} Returns the value inside the tag EXCLUDING attributes
+ */
+export function GetCollapsedTagValueWithoutAttribute(input: string): string {
+    throw new Error("Not implemented yet");
 }
 
 export function GetValueBetweenTag(str: string) {

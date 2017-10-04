@@ -9,64 +9,84 @@ import * as assert from 'assert';
 // You can import and use all API from the 'vscode' module
 // as well as import your extension to test it
 import * as vscode from 'vscode';
-import * as tagCollapser from '../tagExtractor';
+import * as tagExtractor from '../tagExtractor';
 
 // Defines a Mocha test suite to group tests of similar kind together
 suite("TagExtractor Tests", () => {
 
     test("GetOpenTagValueWithoutAttribute 1", () => {
         var input = "<Open></Close>";
-        assert.equal(tagCollapser.GetOpenTagValueWithoutAttribute(input), "Open");
+        assert.equal(tagExtractor.GetOpenTagValueWithoutAttribute(input), "Open");
     });
 
     test("GetOpenTagValueWithoutAttribute 2", () => {
         var input = "<Open height='5' weight='yo'></Close>";
-        assert.equal(tagCollapser.GetOpenTagValueWithoutAttribute(input), "Open");
+        assert.equal(tagExtractor.GetOpenTagValueWithoutAttribute(input), "Open");
     });
 
     test("GetOpenTagValueWithoutAttribute 3", () => {
         var input = " <Open></Close>";
-        assert.equal(tagCollapser.GetOpenTagValueWithoutAttribute(input), "Open");
+        assert.equal(tagExtractor.GetOpenTagValueWithoutAttribute(input), "Open");
     });
 
     test("GetOpenTagValueWithoutAttribute 4", () => {
         var input = " <Open height='5' weight='yo'></Close>";
-        assert.equal(tagCollapser.GetOpenTagValueWithoutAttribute(input), "Open");
+        assert.equal(tagExtractor.GetOpenTagValueWithoutAttribute(input), "Open");
     });
 
     test("GetOpenTagValueWithAttribute 1", () => {
         var input = "<Open></Close>";
-        assert.equal(tagCollapser.GetOpenTagValueWithAttribute(input), "Open");
+        assert.equal(tagExtractor.GetOpenTagValueWithAttribute(input), "Open");
     });
 
     test("GetOpenTagValueWithAttribute 2", () => {
         var input = "<Open height='5' weight='yo'></Close>";
-        assert.equal(tagCollapser.GetOpenTagValueWithAttribute(input), "Open height='5' weight='yo'");
+        assert.equal(tagExtractor.GetOpenTagValueWithAttribute(input), "Open height='5' weight='yo'");
     });
 
     test("GetOpenTagValueWithAttribute 3", () => {
         var input = " <Open></Close>";
-        assert.equal(tagCollapser.GetOpenTagValueWithAttribute(input), "Open");
+        assert.equal(tagExtractor.GetOpenTagValueWithAttribute(input), "Open");
     });
 
     test("GetOpenTagValueWithAttribute 2", () => {
         var input = " <Open height='5' weight='yo'></Close>";
-        assert.equal(tagCollapser.GetOpenTagValueWithAttribute(input), "Open height='5' weight='yo'");
+        assert.equal(tagExtractor.GetOpenTagValueWithAttribute(input), "Open height='5' weight='yo'");
     });
 
-    test("GetCloseTagValue", () => {
+    test("GetCloseTagValue 1", () => {
         var input = "<Open></Close>";
-        assert.equal(tagCollapser.GetCloseTagValue(input), "Close");
+        assert.equal(tagExtractor.GetCloseTagValue(input), "Close");
     });
 
     test("GetValueBetweenTag 1", () => {
         var input = "<tag>hey</tag>";
-        assert.equal(tagCollapser.GetValueBetweenTag(input), "hey");
+        assert.equal(tagExtractor.GetValueBetweenTag(input), "hey");
     });
 
     test("GetValueBetweenTag 2", () => {
         var input = "<tag></tag>";
-        assert.equal(tagCollapser.GetValueBetweenTag(input), "");
+        assert.equal(tagExtractor.GetValueBetweenTag(input), "");
+    });
+
+    test("GetCollapsedTagValueWithAttribute 1", () => {
+        var input = "<tag/>";
+        assert.equal(tagExtractor.GetCollapsedTagValueWithAttribute(input), "tag");
+    });
+
+    test("GetCollapsedTagValueWithAttribute 2", () => {
+        var input = "<tag hello='hey'/>";
+        assert.equal(tagExtractor.GetCollapsedTagValueWithAttribute(input), "tag hello='hey'");
+    });
+
+    test("GetCollapsedTagValueWithoutAttribute 1", () => {
+        var input = "<tag/>";
+        assert.equal(tagExtractor.GetCollapsedTagValueWithoutAttribute(input), "tag");
+    });
+
+    test("GetCollapsedTagValueWithoutAttribute 2", () => {
+        var input = "<tag hello='hey'/>";
+        assert.equal(tagExtractor.GetCollapsedTagValueWithoutAttribute(input), "tag");
     });
 
 });
