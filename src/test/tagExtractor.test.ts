@@ -85,6 +85,14 @@ suite("TagExtractor Tests", () => {
         assert.equal(tagExtractor.GetValueBetweenTag(input), "");
     });
 
+    test("GetValueBetweenTag 3", () => {
+        var input =
+            `<Button title='hey' onPress={
+          ()=>{ Alert.alert("oi", "walao"); }
+        }></Button>`;
+        assert.equal(tagExtractor.GetValueBetweenTag(input), "");
+    });
+
     test("GetCollapsedTagValueWithAttribute 1", () => {
         var input = "<tag/>";
         assert.equal(tagExtractor.GetCollapsedTagValueWithAttribute(input), "tag");
