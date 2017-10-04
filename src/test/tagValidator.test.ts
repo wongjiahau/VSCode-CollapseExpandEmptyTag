@@ -29,6 +29,11 @@ suite("TagValidator Tests", () => {
         assert.equal(tagValidator.IsInvalidExpandedTag(input), null);
     });
 
+    test("IsInvalidExpandedTag 3", () => {
+        var input = "<lol/>";
+        assert.equal(tagValidator.IsInvalidExpandedTag(input), "'<lol/>' is already collapsed.");
+    });
+
     test("IsValidExpandedTag 1", () => {
         var input = "helo";
         assert.equal(tagValidator.IsValidExpandedTag(input), false);
@@ -76,17 +81,17 @@ suite("TagValidator Tests", () => {
 
     test("IsInvalidCollapsedTag 1", () => {
         var input = "<lol></lol>";
-        assert.equal(tagValidator.IsInvalidExpandedTag(input), null);
+        assert.equal(tagValidator.IsInvalidCollapsedTag(input),"'<lol></lol>' is already expanded.");
     });
 
     test("IsInvalidCollapsedTag 2", () => {
         var input = "<lol/>";
-        assert.equal(tagValidator.IsInvalidExpandedTag(input), "'<lol/>' is already collapsed.");
+        assert.equal(tagValidator.IsInvalidCollapsedTag(input), null);
     });
     
     test("IsInvalidCollapsedTag 3", () => {
         var input = "<lol</lol>";
-        assert.equal(tagValidator.IsInvalidExpandedTag(input), "'<lol</lol>' is not a valid tag.");
+        assert.equal(tagValidator.IsInvalidCollapsedTag(input), "'<lol</lol>' is not a valid tag.");
     });
     
     test("IsValidCollapsedTag 1", () => {
@@ -106,6 +111,11 @@ suite("TagValidator Tests", () => {
 
     test("IsValidCollapsedTag 4", () => {
         var input = "<lol hey='yo'/>";
+        assert.equal(tagValidator.IsValidCollapsedTag(input), true);
+    });
+
+    test("IsValidCollapsedTag 4", () => {
+        var input = "<lol src='../extension.ts'/>";
         assert.equal(tagValidator.IsValidCollapsedTag(input), true);
     });
 
