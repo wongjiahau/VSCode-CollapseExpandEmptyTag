@@ -87,9 +87,7 @@ suite("TagExtractor Tests", () => {
 
     test("GetValueBetweenTag 3", () => {
         var input =
-            `<Button title='hey' onPress={
-          ()=>{ Alert.alert("oi", "walao"); }
-        }></Button>`;
+            `<Button onPress={ ()=>{ /*Some action*/} }></Button>`;
         assert.equal(tagExtractor.GetValueBetweenTag(input), "");
     });
 

@@ -2,6 +2,10 @@
 All notable changes to the "collapsed-expand-empty-tag" extension will be documented in this file.
 
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
+## [0.0.4] - 2017-10-04 
+### Fixing 
+- Cannot collapse tag that contains '>' symbols in value of attributes
+
 ## [0.0.3] - 2017-10-04 
 ### Fixed
 - A bug where leading whitespaces will be gone after expanding

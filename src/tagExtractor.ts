@@ -69,17 +69,21 @@ export function GetCollapsedTagValueWithoutAttribute(input: string): string {
 }
 
 export function GetValueBetweenTag(str: string) {
-    var rightAngularBracketIsFound = false;
+    var leftAngularBracketIsFound = false;
     var result = "";
-    for (var i = 0; i < str.length; i++) {
-        if (str[i] == '>') {
-            rightAngularBracketIsFound = true;
+    for (var i = str.length - 1; i > 0; i--) {
+        if (str[i] == '<') {
+            leftAngularBracketIsFound = true;
             continue;
         }
-        if (!rightAngularBracketIsFound) continue;
-        if (str[i] == '<') return result;
+        if (!leftAngularBracketIsFound) continue;
+        if (str[i] == '>') return ReverseString(result);
         result += str[i];
     }
+}
+
+function ReverseString(str: string): string {
+    return str.split("").reverse().join("");
 }
 
 /**
