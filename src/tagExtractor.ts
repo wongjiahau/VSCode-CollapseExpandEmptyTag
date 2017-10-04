@@ -1,11 +1,11 @@
 import {
-    Contains
+    Contains,
+    IsInvisibleChar
 } from './helper'
 
 export function GetOpenTagValueWithoutAttribute(str: string) {
     var result = GetOpenTagValueWithAttribute(str);
-    if (Contains(result, ' ')) return result.substring(0, result.indexOf(' '));
-    return result;
+    return ExcludeAttributes(result);
 }
 
 export function GetOpenTagValueWithAttribute(str: string) {
@@ -65,8 +65,7 @@ export function GetCollapsedTagValueWithAttribute(input: string): string {
  */
 export function GetCollapsedTagValueWithoutAttribute(input: string): string {
     var result = GetCollapsedTagValueWithAttribute(input);
-    if(Contains(result, ' ')) return result.substring(0, result.indexOf(' '));
-    return result;
+    return ExcludeAttributes(result);
 }
 
 export function GetValueBetweenTag(str: string) {
@@ -81,4 +80,23 @@ export function GetValueBetweenTag(str: string) {
         if (str[i] == '<') return result;
         result += str[i];
     }
+}
+
+/**
+ * 
+ * 
+ * @param {string} input If the tag is like <example hey='yo'></example>, the input should be "example hey='yo'"
+ * @returns {string} Return the value excluding attributes, e.g. "example" 
+ */
+function ExcludeAttributes(input: string): string {
+    var index = 0;
+    for (var i = 0; i < input.length; i++) {
+        var element = input[i];
+        if (IsInvisibleChar(element)) {
+            index = i;
+            break;
+        }
+    }
+    if (index > 0) return input.substring(0, index);
+    return input;
 }

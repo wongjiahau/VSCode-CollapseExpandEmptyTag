@@ -34,6 +34,14 @@ suite("TagExtractor Tests", () => {
         assert.equal(tagExtractor.GetOpenTagValueWithoutAttribute(input), "Open");
     });
 
+    test("GetOpenTagValueWithoutAttribute 5", () => {
+        var input = 
+                `<Hello
+                hey='yo'
+                ></Hello>`;
+        assert.equal(tagExtractor.GetOpenTagValueWithoutAttribute(input), "Hello");
+    });
+
     test("GetOpenTagValueWithAttribute 1", () => {
         var input = "<Open></Close>";
         assert.equal(tagExtractor.GetOpenTagValueWithAttribute(input), "Open");
@@ -57,6 +65,14 @@ suite("TagExtractor Tests", () => {
     test("GetCloseTagValue 1", () => {
         var input = "<Open></Close>";
         assert.equal(tagExtractor.GetCloseTagValue(input), "Close");
+    });
+
+    test("GetCloseTagValue 2", () => {
+        var input = 
+                `<Hello
+                hey='yo'
+                ></Hello>`;
+        assert.equal(tagExtractor.GetCloseTagValue(input), "Hello");
     });
 
     test("GetValueBetweenTag 1", () => {

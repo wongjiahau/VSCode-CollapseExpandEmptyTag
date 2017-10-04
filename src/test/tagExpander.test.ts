@@ -24,7 +24,7 @@ suite("TagExpander Tests", () => {
         assert.equal(tagExpander.ExpandTag(input), "<hello height='yo' weight='lala'></hello>");
     });
     
-    test("ExpandTag 2", () => {
+    test("ExpandTag 3", () => {
         var input = `<hello
                         hey='yo'
                         walao='a'

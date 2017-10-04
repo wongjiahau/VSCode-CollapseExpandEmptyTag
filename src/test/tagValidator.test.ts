@@ -91,6 +91,14 @@ suite("TagValidator Tests", () => {
         assert.equal(tagValidator.IsValidExpandedTag(input), true);
     });
 
+    test("IsValidExpandedTag 11", () => {
+        var input =  
+                    `<Hello
+                    hey='yo'
+                    ></Hello>` ;
+        assert.equal(tagValidator.IsValidExpandedTag(input), true);
+    });
+
     test("IsInvalidCollapsedTag 1", () => {
         var input = "<lol></lol>";
         assert.equal(tagValidator.IsInvalidCollapsedTag(input),"'<lol></lol>' is already expanded.");
