@@ -24,9 +24,10 @@ suite("TagCollapser Tests", () => {
     });
 
     test("CollapseTag 3", () => {
-        var input = "<Open height='foo' bar='yo'></Open>\n<Tag2></Tag2>";
-        assert.equal(tagCollapser.CollapseTag(input), "<Open height='foo' bar='yo'/>\n<Tag2/>");
-    });
+        var input = `<hello>
 
+                    </hello>`;
+        assert.equal(tagCollapser.CollapseTag(input), "<hello/>");
+    });
 
 });
