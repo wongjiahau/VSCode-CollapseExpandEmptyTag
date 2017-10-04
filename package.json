@@ -1,60 +1,68 @@
 {
-    "name": "collapsed-expand-empty-tag",
-    "displayName": "Collapse/Expand-Empty-Tag",
-    "description": "Collapse or expand empty XML/HTML tag.",
-    "version": "0.0.5",
-    "publisher": "wongjiahau",
-    "galleryBanner": {
-        "theme": "dark"
-    },
-    "keywords": [
-        "xml",
-        "html",
-        "collapse",
-        "expand",
-        "tag"
-    ],
-    "repository": {
-        "url": "https://github.com/wongjiahau/VSCode-CollapseExpandEmptyTag"
-    },
-    "engines": {
-        "vscode": "^1.16.0"
-    },
-    "homepage": "https://github.com/wongjiahau/VSCode-CollapseExpandEmptyTag",
-    "author": {
-        "name": "wongjiahau",
-        "email": "hou32hou@gmail.com"
-    },
-    "categories": [
-        "Formatters",
-        "Extension Packs",
-        "Other"
-    ],
-    "activationEvents": [
-        "onCommand:extension.collapseTag",
-        "onCommand:extension.expandTag"
-    ],
-    "main": "./out/extension",
-    "contributes": {
-        "commands": [{
-            "command": "extension.collapseTag",
-            "title": "Collapse empty tag"
-        }, {
-            "command": "extension.expandTag",
-            "title": "Expand empty tag"
-        }]
-    },
-    "scripts": {
-        "vscode:prepublish": "npm run compile",
-        "compile": "tsc -p ./",
-        "watch": "tsc -watch -p ./",
-        "postinstall": "node ./node_modules/vscode/bin/install",
-        "test": "npm run compile && node ./node_modules/vscode/bin/test"
-    },
-    "devDependencies": {
-        "typescript": "^2.5.3",
-        "vscode": "^1.1.5",
-        "@types/node": "^7.0.43",
-        "@types/mocha": "^2.2.42"
-    }
+  "name": "collapsed-expand-empty-tag",
+  "displayName": "Collapse/Expand-Empty-Tag",
+  "description": "Collapse or expand empty XML/HTML tag.",
+  "version": "0.0.5",
+  "publisher": "wongjiahau",
+  "galleryBanner": {
+    "theme": "dark"
+  },
+  "keywords": [
+    "xml",
+    "html",
+    "collapse",
+    "expand",
+    "tag"
+  ],
+  "repository": {
+    "url": "https://github.com/wongjiahau/VSCode-CollapseExpandEmptyTag"
+  },
+  "engines": {
+    "vscode": "^1.16.0"
+  },
+  "homepage": "https://github.com/wongjiahau/VSCode-CollapseExpandEmptyTag",
+  "author": {
+    "name": "wongjiahau",
+    "email": "hou32hou@gmail.com"
+  },
+  "categories": [
+    "Formatters",
+    "Extension Packs",
+    "Other"
+  ],
+  "activationEvents": [
+    "onCommand:extension.collapseTag",
+    "onCommand:extension.expandTag"
+  ],
+  "main": "./out/extension",
+  "contributes": {
+    "commands": [
+      {
+        "command": "extension.collapseTag",
+        "title": "Collapse empty tag"
+      },
+      {
+        "command": "extension.expandTag",
+        "title": "Expand empty tag"
+      }
+    ]
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "postinstall": "node ./node_modules/vscode/bin/install",
+    "test": "npm run compile && node ./node_modules/vscode/bin/test"
+  },
+  "devDependencies": {
+    "typescript": "^2.5.3",
+    "vscode": "^1.1.5",
+    "@types/node": "^7.0.43",
+    "@types/mocha": "^2.2.42"
+  },
+  "dependencies": {
+    "jsx-parser": "^1.0.8",
+    "lodash": "^4.17.4",
+    "string": "^3.3.3"
+  }
 }
