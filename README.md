@@ -1,7 +1,6 @@
-# collapsed-expand-empty-tag README
+# Collapse/Expand empty tag
 
-This is the README for your extension "collapsed-expand-empty-tag". After writing up a brief description, we recommend including the following sections.
-
+This extension is used for collapsing or expanding empty tag (inspired by Jetbrain Resharper).
 ## Features
 
 Describe specific features of your extension including screenshots of your extension in action. Image paths are relative to this README file.
