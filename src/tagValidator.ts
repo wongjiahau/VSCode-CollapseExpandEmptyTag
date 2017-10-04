@@ -1,5 +1,6 @@
 import {
-    CountChar
+    CountChar,
+    IsInvisibleChar
 } from './helper'
 import * as tagExtractor from './tagExtractor'
 
@@ -34,7 +35,13 @@ export function IsValidExpandedTag(input: string): boolean {
 }
 
 export function IsEmptyExpandedTag(tag: string): boolean {
-    return tagExtractor.GetValueBetweenTag(tag) == "";
+    var valueBetweenTag = tagExtractor.GetValueBetweenTag(tag);
+    if (valueBetweenTag.length == 0) return true;
+    for (var i = 0; i < valueBetweenTag.length; i++) {
+        var char = valueBetweenTag[i];
+        if (!IsInvisibleChar(char)) return false;
+    }
+    return true;
 }
 
 /**
