@@ -14,6 +14,21 @@ import * as tagValidator from '../tagValidator';
 // Defines a Mocha test suite to group tests of similar kind together
 suite("TagValidator Tests", () => {
 
+    test("IsInvalidTag 1", () => {
+        var input = "<tagfglala></tag>";
+        assert.equal(tagValidator.IsInvalidTag(input), "'<tagfglala></tag>' is not a valid tag.");
+    });
+
+    test("IsInvalidTag 2", () => {
+        var input = "<lol>haha</lol>";
+        assert.equal(tagValidator.IsInvalidTag(input), "'<lol>haha</lol>' is not an empty tag.");
+    });
+
+    test("IsInvalidTag 3", () => {
+        var input = "<lol></lol>";
+        assert.equal(tagValidator.IsInvalidTag(input), null);
+    });
+
     test("IsValidTag 1", () => {
         var input = "helo";
         assert.equal(tagValidator.IsValidTag(input), false);
@@ -33,12 +48,12 @@ suite("TagValidator Tests", () => {
         var input = "<hey>/yo>";
         assert.equal(tagValidator.IsValidTag(input), false);
     });
-        
+
     test("IsValidTag 5", () => {
         var input = "<hey></hey>";
         assert.equal(tagValidator.IsValidTag(input), true);
     });
-        
+
     test("IsValidTag 6", () => {
         var input = "<hey walao='a'></hey>";
         assert.equal(tagValidator.IsValidTag(input), true);

@@ -2,8 +2,10 @@
 // The module 'vscode' contains the VS Code extensibility API Import the module
 // and reference it with the alias vscode in your code below
 import * as vscode from 'vscode';
-import { Range } from 'vscode'; 
-import * as tagValidator from './tagValidator';
+import {
+    Range
+} from 'vscode';
+import {IsInvalidTag} from './tagValidator';
 import * as tagCollapser from './tagCollapser';
 
 // this method is called when your extension is activated your extension is
@@ -25,13 +27,12 @@ export function activate(context: vscode.ExtensionContext) {
             editor.edit(builder => {
                 editor.selections.forEach(selection => {
                     const range = new Range(selection.start, selection.end);
-                    const tag = editor.document.getText(range) || '';
-                    if (!tagValidator.IsValidTag(tag))
-                        vscode.window.showErrorMessage("'" + tag + "'" + " is not a valid tag.");
-                    else if (!tagValidator.IsEmptyTag(tag))
-                        vscode.window.showErrorMessage("'" + tag + "'" + " is not an empty tag.");
-                    else {
-                        const collapsedTag = tagCollapser.CollapseTag(tag);
+                    const text = editor.document.getText(range) || '';
+                    var error = IsInvalidTag(text);
+                    if (error != null) 
+                        vscode.window.showErrorMessage(error);
+                     else {
+                        const collapsedTag = tagCollapser.CollapseTag(text);
                         builder.replace(selection, collapsedTag);
                     }
                 });
