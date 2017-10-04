@@ -9,3 +9,9 @@ export function CountChar(str: string, charToBeCount: string) {
     }
     return count;
 }
+
+export function IsInvisibleChar(char: string): boolean {
+    if(char.length > 1) throw new Error("Expected a char, not a string");
+    var asciiCode = char.charCodeAt(0);
+    return asciiCode >= 0 && asciiCode <= 32;
+}

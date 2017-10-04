@@ -32,4 +32,20 @@ suite("Helper Tests", () => {
         var input = "qwerty&w";
         assert.equal(helper.CountChar(input, "&"), 1);
     });
+
+    test("IsInvisbileChar 1", () => {
+        var input = " ";
+        assert.equal(helper.IsInvisibleChar(input), true);
+    });
+
+    test("IsInvisbileChar 2", () => {
+        var input = "b";
+        assert.equal(helper.IsInvisibleChar(input), false);
+    });
+
+    test("IsInvisbileChar 3", () => {
+        var input = "basd";
+        assert.throws(()=>{helper.IsInvisibleChar(input)});
+    });
+
 });
