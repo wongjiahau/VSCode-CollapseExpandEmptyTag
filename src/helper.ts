@@ -48,3 +48,6 @@ export function GetLeadingWhitespaces(input: string): string {
         else return result;
     }
 }
+export function ReverseString(str: string): string {
+    return str.split("").reverse().join("");
+}

@@ -30,4 +30,10 @@ suite("TagCollapser Tests", () => {
         assert.equal(tagCollapser.CollapseTag(input), "<hello/>");
     });
 
+    test("CollapseTag 4", () => {
+        var input =
+            `<Button title='hey' onPress={ ()=>{ Alert.alert("oi", "walao"); } }></Button>`;
+        assert.equal(tagCollapser.CollapseTag(input), `<Button title='hey' onPress={ ()=>{ Alert.alert("oi", "walao"); } }/>`);
+    });
+
 });

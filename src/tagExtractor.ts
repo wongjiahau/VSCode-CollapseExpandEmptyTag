@@ -1,6 +1,7 @@
 import {
     Contains,
-    IsInvisibleChar
+    IsInvisibleChar,
+    ReverseString
 } from './helper'
 
 export function GetOpenTagValueWithoutAttribute(str: string) {
@@ -10,16 +11,21 @@ export function GetOpenTagValueWithoutAttribute(str: string) {
 
 export function GetOpenTagValueWithAttribute(str: string) {
     var result = "";
-    var leftAngularBrackIsFound = false;
-    for (var i = 0; i < str.length; i++) {
+    var rightAngularBracketCount = 0;
+    for (var i = str.length - 1; i > 0; i--) {
         var element = str[i];
-        if (element == '<') {
-            leftAngularBrackIsFound = true;
-            continue;
+        if (rightAngularBracketCount >= 2) {
+            result += element.toString();
+        } else {
+            if (element == '>') {
+                rightAngularBracketCount++;
+                continue;
+            }
         }
-        if (element == '>') return result;
-        if (leftAngularBrackIsFound) result += element.toString();
     }
+    result = ReverseString(result);
+    if (result[0] == '<') result = result.substr(1);
+    return result;
 }
 
 /**
@@ -82,9 +88,6 @@ export function GetValueBetweenTag(str: string) {
     }
 }
 
-function ReverseString(str: string): string {
-    return str.split("").reverse().join("");
-}
 
 /**
  * 

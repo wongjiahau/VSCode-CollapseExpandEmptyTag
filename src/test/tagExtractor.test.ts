@@ -57,9 +57,15 @@ suite("TagExtractor Tests", () => {
         assert.equal(tagExtractor.GetOpenTagValueWithAttribute(input), "Open");
     });
 
-    test("GetOpenTagValueWithAttribute 2", () => {
+    test("GetOpenTagValueWithAttribute 4", () => {
         var input = " <Open height='5' weight='yo'></Close>";
         assert.equal(tagExtractor.GetOpenTagValueWithAttribute(input), "Open height='5' weight='yo'");
+    });
+
+    test("GetOpenTagValueWithAttribute 5", () => {
+        var input =
+            `<Button title='hey' onPress={ ()=>{ Alert.alert("oi", "walao"); } }></Button>`;
+        assert.equal(tagExtractor.GetOpenTagValueWithAttribute(input), `Button title='hey' onPress={ ()=>{ Alert.alert("oi", "walao"); } }`);
     });
 
     test("GetCloseTagValue 1", () => {
