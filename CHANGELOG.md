@@ -2,6 +2,9 @@
 All notable changes to the "collapsed-expand-empty-tag" extension will be documented in this file.
 
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
+## [0.0.5] - 2017-10-04 
+- This is a hotfix for bugs in 0.0.4
+
 ## [0.0.4] - 2017-10-04 
 ### Fixed
 - Cannot collapse tag that contains '>' symbols in value of attributes
