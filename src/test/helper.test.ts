@@ -48,4 +48,34 @@ suite("Helper Tests", () => {
         assert.throws(()=>{helper.IsInvisibleChar(input)});
     });
 
+    test(" RemoveSurroundingInvisibleChar 1", () => {
+        var input = " hello ";
+        assert.equal(helper.RemoveSurroundingInvisibleChar(input), "hello");
+    });
+
+    test(" RemoveSurroundingInvisibleChar 2", () => {
+        var input = "\nheyyo\t";
+        assert.equal(helper.RemoveSurroundingInvisibleChar(input), "heyyo");
+    });
+
+    test(" RemoveSurroundingInvisibleChar 3", () => {
+        var input = "hello";
+        assert.equal(helper.RemoveSurroundingInvisibleChar(input), "hello");
+    });
+
+    test(" RemoveSurroundingInvisibleChar 4", () => {
+        var input = " hey src='./extension.test.ts' ";
+        assert.equal(helper.RemoveSurroundingInvisibleChar(input), "hey src='./extension.test.ts'");
+    });
+
+    test(" RemoveSurroundingInvisibleChar 5", () => {
+        var input = "   hello baby";
+        assert.equal(helper.RemoveSurroundingInvisibleChar(input), "hello baby");
+    });
+
+    test(" RemoveSurroundingInvisibleChar 6", () => {
+        var input = "hello baby     ";
+        assert.equal(helper.RemoveSurroundingInvisibleChar(input), "hello baby");
+    });
+
 });

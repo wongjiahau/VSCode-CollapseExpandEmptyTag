@@ -11,7 +11,31 @@ export function CountChar(str: string, charToBeCount: string) {
 }
 
 export function IsInvisibleChar(char: string): boolean {
-    if(char.length > 1) throw new Error("Expected a char, not a string");
+    if (char.length > 1) throw new Error("Expected a char, not a string");
     var asciiCode = char.charCodeAt(0);
     return asciiCode >= 0 && asciiCode <= 32;
+}
+
+export function RemoveSurroundingInvisibleChar(input: string): string {
+    var indexOfFirstVisibleChar = -1;
+    var indexOfLastVisibleChar = -1;
+    for (var i = 0; i < input.length; i++) {
+        var element = input[i];
+        if (!(IsInvisibleChar(element))) {
+            indexOfFirstVisibleChar = i;
+            break;
+        }
+    }
+
+    for (var i = input.length - 1; i > 0; i--) {
+        var element = input[i];
+        if (!(IsInvisibleChar(element))) {
+            indexOfLastVisibleChar = i;
+            break;
+        }
+    }
+    if(indexOfLastVisibleChar == input.length-1){
+        return input.substring(indexOfFirstVisibleChar);
+    }
+    return input.substring(indexOfFirstVisibleChar, indexOfLastVisibleChar + 1)
 }

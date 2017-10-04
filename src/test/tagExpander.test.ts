@@ -13,33 +13,37 @@ import * as tagExpander from '../tagExpander';
 
 // Defines a Mocha test suite to group tests of similar kind together
 suite("TagExpander Tests", () => {
-    
+
     test("ExpandTag 1", () => {
         var input = "<hello/>";
         assert.equal(tagExpander.ExpandTag(input), "<hello></hello>");
     });
-    
+
     test("ExpandTag 2", () => {
         var input = "<hello height='yo' weight='lala'/>";
         assert.equal(tagExpander.ExpandTag(input), "<hello height='yo' weight='lala'></hello>");
     });
-    
+
     test("ExpandTag 3", () => {
         var input = `<hello
                         hey='yo'
                         walao='a'
                         />`;
-        assert.equal(tagExpander.ExpandTag(input), 
-                    `<hello
+        assert.equal(tagExpander.ExpandTag(input),
+            `<hello
                         hey='yo'
                         walao='a'
                         ></hello>`);
     });
-    
+
     test("ExpandTag 4", () => {
-        var input = `<example src="./file/test.ts" />` ;
+        var input = `<example src="./file/test.ts" />`;
         assert.equal(tagExpander.ExpandTag(input), `<example src="./file/test.ts" ></example>`);
     });
-    
+
+    test("ExpandTag 5", () => {
+        var input = "<BlinkApp />";
+        assert.equal(tagExpander.ExpandTag(input), "<BlinkApp></BlinkApp>");
+    });
 
 });
