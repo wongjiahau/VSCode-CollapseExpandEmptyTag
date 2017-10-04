@@ -16,3 +16,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 - Swarming whitespace within tag when expanding tag (sometimes)
 ### Added
 - Changelog
+
+## [0.0.3]
+### Fixed
+- A bug where leading whitespaces will be gone after expanding

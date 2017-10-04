@@ -34,8 +34,17 @@ export function RemoveSurroundingInvisibleChar(input: string): string {
             break;
         }
     }
-    if(indexOfLastVisibleChar == input.length-1){
+    if (indexOfLastVisibleChar == input.length - 1) {
         return input.substring(indexOfFirstVisibleChar);
     }
     return input.substring(indexOfFirstVisibleChar, indexOfLastVisibleChar + 1)
+}
+
+export function GetLeadingWhitespaces(input: string): string {
+    var result = "";
+    for (var i = 0; i < input.length; i++) {
+        var element = input[i];
+        if(IsInvisibleChar(element)) result += element.toString();
+        else return result;
+    }
 }

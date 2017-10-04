@@ -46,4 +46,9 @@ suite("TagExpander Tests", () => {
         assert.equal(tagExpander.ExpandTag(input), "<BlinkApp></BlinkApp>");
     });
 
+    test("ExpandTag 6", () => {
+        var input = "\t<BlinkApp />";
+        assert.equal(tagExpander.ExpandTag(input), "\t<BlinkApp></BlinkApp>");
+    });
+
 });

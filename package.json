@@ -2,7 +2,7 @@
     "name": "collapsed-expand-empty-tag",
     "displayName": "Collapse/Expand-Empty-Tag",
     "description": "Collapse or expand empty XML/HTML tag.",
-    "version": "0.0.2",
+    "version": "0.0.3",
     "publisher": "wongjiahau",
     "galleryBanner": {
         "theme": "dark"

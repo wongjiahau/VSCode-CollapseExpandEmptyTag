@@ -4,7 +4,7 @@ import {
 }
 from "./tagExtractor";
 
-import {RemoveSurroundingInvisibleChar} from "./helper"
+import {RemoveSurroundingInvisibleChar, GetLeadingWhitespaces} from "./helper"
 
 /**
  * @export
@@ -12,9 +12,11 @@ import {RemoveSurroundingInvisibleChar} from "./helper"
  * @returns {string} Return an expanded tag, e.g. <example></example>
  */
 export function ExpandTag(input: string): string {
+    var leadingWhitespaces = GetLeadingWhitespaces(input);
     var tagName = GetCollapsedTagValueWithoutAttribute(input);
     var tagValue = GetCollapsedTagValueWithAttribute(input);
     tagName =  RemoveSurroundingInvisibleChar(tagName);
     tagValue = RemoveSurroundingInvisibleChar(tagValue);
-    return `<${tagValue}></${tagName}>`;
+    return leadingWhitespaces +  `<${tagValue}></${tagName}>`;
+
 }
