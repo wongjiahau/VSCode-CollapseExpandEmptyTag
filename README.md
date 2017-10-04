@@ -1,64 +1,45 @@
-# Collapse/Expand empty tag
+# Collapse/Expand Empty Tag
 
-This extension is used for collapsing or expanding empty tag (inspired by Jetbrain Resharper).
+This extension is used for collapsing or expanding empty HTML/XML tag (inspired by Jetbrain Resharper).
+```xml
+<example></example>
+      |   ^
+      |   |
+      |   |
+      V   |
+    <example/>
+```
+  
 ## Features
+### Collapsing empty tag
+![extensionexample](https://user-images.githubusercontent.com/23183656/31164486-00c3e2f2-a91a-11e7-80d9-cde5ac6e510c.gif)
 
-Describe specific features of your extension including screenshots of your extension in action. Image paths are relative to this README file.
-
-For example if there is an image subfolder under your extension project workspace:
-
-\!\[feature X\]\(images/feature-x.png\)
-
-> Tip: Many popular extensions utilize animations. This is an excellent way to show off your extension! We recommend short, focused animations that are easy to follow.
+### Expanding tag
+![expand](https://user-images.githubusercontent.com/23183656/31164481-f9c7d9f4-a919-11e7-98d7-ec92f973fb51.gif)
 
 ## Requirements
-
-If you have any requirements or dependencies, add a section describing those and how to install and configure them.
+1. Visual Studio Code
 
 ## Extension Settings
 
-Include if your extension adds any VS Code settings through the `contributes.configuration` extension point.
-
-For example:
-
-This extension contributes the following settings:
-
-* `myExtension.enable`: enable/disable this extension
-* `myExtension.thing`: set to `blah` to do something
+Currently there are no settings available for this extension.
 
 ## Known Issues
-
-Calling out known issues can help limit users opening duplicate issues against your extension.
+1) Cannot expand an collapsed tag that is on a few lines. For example, the following tag cannot be expanded unless joined into a single line. (Pull request are welcome!)
+```xml
+<example 
+  att="hello"
+  />
+```
 
 ## Release Notes
 
-Users appreciate release notes as you update your extension.
+- Added collapse/expanding empty tag function.
 
 ### 1.0.0
 
-Initial release of ...
+Initial release of Collapse/Expand Empty Tag
 
-### 1.0.1
 
-Fixed issue #.
-
-### 1.1.0
-
-Added features X, Y, and Z.
-
------------------------------------------------------------------------------------------------------------
-
-## Working with Markdown
-
-**Note:** You can author your README using Visual Studio Code.  Here are some useful editor keyboard shortcuts:
-
-* Split the editor (`Cmd+\` on OSX or `Ctrl+\` on Windows and Linux)
-* Toggle preview (`Shift+CMD+V` on OSX or `Shift+Ctrl+V` on Windows and Linux)
-* Press `Ctrl+Space` (Windows, Linux) or `Cmd+Space` (OSX) to see a list of Markdown snippets
-
-### For more information
-
-* [Visual Studio Code's Markdown Support](http://code.visualstudio.com/docs/languages/markdown)
-* [Markdown Syntax Reference](https://help.github.com/articles/markdown-basics/)
 
 **Enjoy!**
