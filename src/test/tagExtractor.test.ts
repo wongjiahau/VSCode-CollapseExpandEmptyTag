@@ -95,6 +95,11 @@ suite("TagExtractor Tests", () => {
         assert.equal(tagExtractor.GetCollapsedTagValueWithAttribute(input), "tag hello='hey'");
     });
 
+    test("GetCollapsedTagValueWithAttribute 3", () => {
+        var input = `<example src="./aer/"/>`;
+        assert.equal(tagExtractor.GetCollapsedTagValueWithAttribute(input), `example src="./aer/"/"`);
+    });
+
     test("GetCollapsedTagValueWithoutAttribute 1", () => {
         var input = "<tag/>";
         assert.equal(tagExtractor.GetCollapsedTagValueWithoutAttribute(input), "tag");
@@ -102,6 +107,12 @@ suite("TagExtractor Tests", () => {
 
     test("GetCollapsedTagValueWithoutAttribute 2", () => {
         var input = "<tag hello='hey'/>";
+        assert.equal(tagExtractor.GetCollapsedTagValueWithoutAttribute(input), "tag");
+    });
+
+    test("GetCollapsedTagValueWithoutAttribute 3", () => {
+        var input = `<tag 
+                        hello='hey'/>`;
         assert.equal(tagExtractor.GetCollapsedTagValueWithoutAttribute(input), "tag");
     });
 

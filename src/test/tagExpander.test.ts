@@ -35,5 +35,11 @@ suite("TagExpander Tests", () => {
                         walao='a'
                         ></hello>`);
     });
+    
+    test("ExpandTag 4", () => {
+        var input = `<example src="./aer/"/>` ;
+        assert.equal(tagExpander.ExpandTag(input), `<example src="./aer/"/></example>`);
+    });
+    
 
 });
