@@ -35,7 +35,7 @@ export function activate(context: vscode.ExtensionContext) {
         vscode.commands.registerCommand('extension.collapseTag', () => {
             var editor = vscode.window.activeTextEditor;
             if (!editor) return;
-            SelectTag(editor);
+            SelectExpandedTag(editor);
             editor.edit(builder => {
                 editor.selections.forEach(selection => {
                     const range = new Range(selection.start, selection.end);
@@ -90,7 +90,7 @@ export function activate(context: vscode.ExtensionContext) {
         });
     }
 
-    function SelectTag(editor: vscode.TextEditor) {
+    function SelectExpandedTag(editor: vscode.TextEditor) {
         const editorText = editor.document.getText();
         const offset = editor.document.offsetAt(GetCurrentCursorPosition(editor));
         const tagMatcher = new TagMatcher(editorText, offset);

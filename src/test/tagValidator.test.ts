@@ -79,6 +79,11 @@ suite("TagValidator Tests", () => {
         assert.equal(tagValidator.IsValidExpandedTag(input), false);
     });
 
+    test("IsValidExpandedTag 10", () => {
+        var input =  "<hey helo='hey'></hey> ";
+        assert.equal(tagValidator.IsValidExpandedTag(input), true);
+    });
+
     test("IsInvalidCollapsedTag 1", () => {
         var input = "<lol></lol>";
         assert.equal(tagValidator.IsInvalidCollapsedTag(input),"'<lol></lol>' is already expanded.");
@@ -127,6 +132,21 @@ suite("TagValidator Tests", () => {
     test("IsEmptyTag 2", () => {
         var input = "<hey>yo</hey>";
         assert.equal(tagValidator.IsEmptyExpandedTag(input), false);
+    });
+
+    test("IsEmptyTag 3", () => {
+        var input =  "<hey> </hey> ";
+        assert.equal(tagValidator.IsEmptyExpandedTag(input), true);
+    });
+
+    test("IsEmptyTag 4", () => {
+        var input =  "<hey>\n</hey> ";
+        assert.equal(tagValidator.IsEmptyExpandedTag(input), true);
+    });
+
+    test("IsEmptyTag 5", () => {
+        var input =  "<hey>\t</hey> ";
+        assert.equal(tagValidator.IsEmptyExpandedTag(input), true);
     });
 
 });
