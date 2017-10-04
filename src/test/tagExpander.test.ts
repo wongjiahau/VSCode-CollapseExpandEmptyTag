@@ -25,20 +25,20 @@ suite("TagExpander Tests", () => {
     });
 
     test("ExpandTag 3", () => {
-        var input = `<hello
-                        hey='yo'
-                        walao='a'
-                        />`;
+        var input = 
+`<hello
+    hey='yo'
+    walao='a'
+    />`;
         assert.equal(tagExpander.ExpandTag(input),
-            `<hello
-                        hey='yo'
-                        walao='a'
-                        ></hello>`);
+`<hello
+    hey='yo'
+    walao='a'></hello>`);
     });
 
     test("ExpandTag 4", () => {
         var input = `<example src="./file/test.ts" />`;
-        assert.equal(tagExpander.ExpandTag(input), `<example src="./file/test.ts" ></example>`);
+        assert.equal(tagExpander.ExpandTag(input), `<example src="./file/test.ts"></example>`);
     });
 
     test("ExpandTag 5", () => {
