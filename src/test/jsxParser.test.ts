@@ -1,6 +1,3 @@
-import {
-    at
-} from 'lodash';
 //
 // Note: This example test is leveraging the Mocha test framework.
 // Please refer to their documentation on https://mochajs.org/ for help.
@@ -15,6 +12,7 @@ import * as vscode from 'vscode';
 import JSXParser from 'jsx-parser'
 
 import {
+    at,
     isEqual
 } from 'lodash'
 // Defines a Mocha test suite to group tests of similar kind together
@@ -27,13 +25,41 @@ suite("JSXParser Tests", () => {
     test("Check for void tag 1", () => {
         var tag = `<vege></vege>`
         var tree = JSXParser(tag);
-        assert.equal( at(tree, 'isVoidTag')[0], undefined);
+        assert.equal(at(tree, 'isVoidTag')[0], undefined);
     });
 
     test("Check for void tag 2", () => {
         var tag = `<vege/>`
         var tree = JSXParser(tag);
-        assert.equal( at(tree, 'isVoidTag')[0], true);
+        assert.equal(at(tree, 'isVoidTag')[0], true);
     });
+
+    test("Check for tag validity 1", () => {
+        var tag = `<hello></hello>`
+        assert.doesNotThrow(() => {
+            JSXParser(tag)
+        });
+    });
+
+    test("Check for tag validity 2", () => {
+        var tag = `<hello/>`
+        assert.doesNotThrow(() => {
+            JSXParser(tag)
+        });
+    });
+
+    test("Check for empty tag 1", () => {
+        var tag = `<hello></hello>`
+        var tree = JSXParser(tag);
+        assert.equal(isEqual(at(tree, 'children')[0], []), true);
+    });
+
+    test("Check for empty tag 2", () => {
+        var tag = `<hello>hey</hello>`
+        var tree = JSXParser(tag);
+        assert.notEqual(at(tree, 'children')[0], []);
+    });
+
+
 
 });

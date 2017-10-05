@@ -6,8 +6,7 @@ import {
     Range
 } from 'vscode';
 import {
-    IsInvalidExpandedTag,
-    IsInvalidCollapsedTag
+    CheckIfThisTagCanBeCollapsed,
 } from './tagValidator';
 import {
     CollapseTag
@@ -40,7 +39,7 @@ export function activate(context: vscode.ExtensionContext) {
                 editor.selections.forEach(selection => {
                     const range = new Range(selection.start, selection.end);
                     const text = editor.document.getText(range) || '';
-                    var error = IsInvalidExpandedTag(text);
+                    var error = CheckIfThisTagCanBeCollapsed(text);
                     if (error != null)
                         vscode.window.showErrorMessage(error);
                     else {

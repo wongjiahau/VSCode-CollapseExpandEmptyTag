@@ -61,6 +61,7 @@
     "@types/mocha": "^2.2.42"
   },
   "dependencies": {
+    "fast-xml-parser": "^2.7.4",
     "jsx-parser": "^1.0.8",
     "lodash": "^4.17.4",
     "string": "^3.3.3"

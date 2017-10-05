@@ -7,32 +7,32 @@ import * as tagExtractor from './tagExtractor'
 
 /**
  * @export
- * @param {string} input Check if the input is an invalid expanded tag  
+ * @param {string} tag Check if the input tag can be collapsed
  * @returns {string} Return an error if input is an invalid expanded tag, else return null
  */
-export function IsInvalidExpandedTag(input: string): string {
-    if (IsValidCollapsedTag(input))
+export function CheckIfThisTagCanBeCollapsed(tag: string): string {
+    if (IsCollapsed(tag))
         return "This tag is already collapsed.";
-    if (!IsValidExpandedTag(input))
+    if (!IsValidTag(tag))
         return "This tag is invalid.";
-    if (!IsEmptyExpandedTag(input))
+    if (!IsEmptyExpandedTag(tag))
         return "Cannot collapse a non-empty tag.";
     return null;
 }
 
-
 /**
  * @export
- * @param {string} input String to be validated
- * @returns {boolean} Returns true if the string is a valid expanded tag, else false
+ * @param {string} input Check if the input tag can be expanded
+ * @returns {string} Return an error if input is an invalid collapsed tag, else return null
  */
-export function IsValidExpandedTag(input: string): boolean {
-    if (CountChar(input, "<") < 2) return false;
-    if (CountChar(input, ">") < 2) return false;
-    if (CountChar(input, "/") < 1) return false;
-    if (tagExtractor.GetOpenTagValueWithoutAttribute(input) != tagExtractor.GetCloseTagValue(input)) return false;
-    return true;
+export function CheckIfThisTagCanExpanded(input: string): string {
+    if (IsExpanded(input))
+        return "This tag is already expanded.";
+    if (!IsValidTag(input))
+        return "This tag is invalid.";
+    return null;
 }
+
 
 export function IsEmptyExpandedTag(tag: string): boolean {
     var valueBetweenTag = tagExtractor.GetValueBetweenTag(tag);
@@ -45,28 +45,12 @@ export function IsEmptyExpandedTag(tag: string): boolean {
 }
 
 /**
- * Check if the input is an invalid collapsed HTML/XML tag
- * @export
- * @param {string} input 
- * @returns {string} Return an error message if input is not a valid collapsed tag, else return null
- */
-export function IsInvalidCollapsedTag(input: string): string {
-    if (IsValidExpandedTag(input))
-        return `'${input}' is already expanded.`;
-    if (!IsValidCollapsedTag(input))
-        return `'${input}' is not a valid tag.`;
-    return null;
-}
-
-/**
- * Check if the input is a valid collapsed HTML/XML tag
+ * Check if the input is a valid collapsed HTML/XML/JSX tag
  * @export
  * @param {string} input 
  * @returns {boolean} 
  */
-export function IsValidCollapsedTag(input: string): boolean {
-    if (CountChar(input, '<') != 1) return false;
-    if (CountChar(input, '>') != 1) return false;
-    if (CountChar(input, '/') < 1) return false;
-    return true;
+export function IsValidTag(input: string): boolean {
+    var fastXmlParser = require('fast-xml-parser');
+    return fastXmlParser.validate(input);
 }
