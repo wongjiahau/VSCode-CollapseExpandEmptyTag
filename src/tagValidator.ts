@@ -1,8 +1,13 @@
 import {
+    isEqual,
+    at
+} from 'lodash';
+import {
     CountChar,
     IsInvisibleChar
 } from './helper'
 import * as tagExtractor from './tagExtractor'
+import JSXParser from 'jsx-parser'
 
 
 /**
@@ -25,7 +30,7 @@ export function CheckIfThisTagCanBeCollapsed(tag: string): string {
  * @param {string} input Check if the input tag can be expanded
  * @returns {string} Return an error if input is an invalid collapsed tag, else return null
  */
-export function CheckIfThisTagCanExpanded(input: string): string {
+export function CheckIfThisTagCanBeExpanded(input: string): string {
     if (IsExpanded(input))
         return "This tag is already expanded.";
     if (!IsValidTag(input))
@@ -35,13 +40,7 @@ export function CheckIfThisTagCanExpanded(input: string): string {
 
 
 export function IsEmptyExpandedTag(tag: string): boolean {
-    var valueBetweenTag = tagExtractor.GetValueBetweenTag(tag);
-    if (valueBetweenTag.length == 0) return true;
-    for (var i = 0; i < valueBetweenTag.length; i++) {
-        var char = valueBetweenTag[i];
-        if (!IsInvisibleChar(char)) return false;
-    }
-    return true;
+    return isEqual(at(JSXParser(tag), 'children')[0], []);
 }
 
 /**
