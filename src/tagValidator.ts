@@ -53,3 +53,11 @@ export function IsValidTag(input: string): boolean {
     var fastXmlParser = require('fast-xml-parser');
     return fastXmlParser.validate(input);
 }
+
+function IsCollapsed(tag: string) : boolean{
+    return at(JSXParser(tag), 'isVoidTag')[0] == true;
+}
+
+function IsExpanded(tag: string) : boolean{
+    return at(JSXParser(tag), 'isVoidTag')[0] == undefined;
+}
