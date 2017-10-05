@@ -11,17 +11,19 @@ import * as assert from 'assert';
 import * as vscode from 'vscode';
 import {
     Reform
-} from '../jsxTreeReformer'
-import JSXParser from 'jsx-parser'
-
+} from '../jsxTreeReformer';
 import {
     isEqual
-} from 'lodash'
-// Defines a Mocha test suite to group tests of similar kind together
-suite("JSXParser Tests", () => {
-    test("Jsonify 1", () => {
-        var str = `<Button onClick={()=>{ /*some action*/}} height="123" width=' '/>`
-        console.log(JSON.stringify(JSXParser(str), null, " "))
-    });
+} from 'lodash';
+import JSXParser from 'jsx-parser';
 
+// Defines a Mocha test suite to group tests of similar kind together
+suite("JSXTreeReformer Tests", () => {
+    test("Reformation 1", () => {
+        var input = '<Button onClick={()=>{ /*some action*/}} height="123"/>'
+        var tree = JSXParser(input);
+        var reformedObject = Reform(tree);
+        console.log(reformedObject);
+        assert.equal(isEqual(tree, JSXParser(reformedObject)), true);
+    });
 });
